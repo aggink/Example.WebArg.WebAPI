@@ -1,16 +1,21 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebArg.Web.Features.DtoModels.Master
+namespace WebArg.Web.Features.DtoModels.Master;
+
+/// <summary>
+/// Связь мастера с клиентом
+/// </summary>
+public sealed record SetBindWithPersonDto
 {
-    public sealed record SetBindWithPersonDto
-    {
-        [Display(Name = "Идентификатор мастера")]
-        [Required(ErrorMessageResourceName = "Required")]
-        public Guid IsnMaster { get; init; }
+    /// <summary>
+    /// Идентификатор мастера
+    /// </summary>
+    [Required(ErrorMessageResourceName = "Required")]
+    public Guid IsnMaster { get; init; }
 
-        [Display(Name = "Идентификатор гостя")]
-        [Required(ErrorMessageResourceName = "Required")]
-        public Guid IsnPerson { get; init; }
-    }
+    /// <summary>
+    /// Идентификатор клиента
+    /// </summary>
+    [Required(ErrorMessageResourceName = "Required")]
+    public Guid IsnPerson { get; init; }
 }

@@ -1,25 +1,35 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using WebArg.Web.Features.DtoModels.Person;
+﻿using WebArg.Web.Features.DtoModels.Person;
 using WebArg.Web.Features.DtoModels.Studio;
 
-namespace WebArg.Web.Features.DtoModels.Master
+namespace WebArg.Web.Features.DtoModels.Master;
+
+/// <summary>
+/// Полные данные о мастере
+/// </summary>
+public sealed record InfoMasterDto
 {
-    public sealed record InfoMasterDto
-    {
-        [Display(Name = "Идентификато мастера")]
-        public Guid IsnNode { get; init; }
+    /// <summary>
+    /// Идентификатор мастера
+    /// </summary>
+    public Guid IsnNode { get; init; }
 
-        [Display(Name = "Имя мастера")]
-        public string Name { get; init; }
+    /// <summary>
+    /// ФИО
+    /// </summary>
+    public string Name { get; init; }
 
-        [Display(Name = "Квалификация мастера")]
-        public string Qualification { get; init; }
+    /// <summary>
+    /// Квалификация
+    /// </summary>
+    public string Qualification { get; init; }
 
-        [Display(Name = "Список студий к которым прикреплён матсер")]
-        public StudioDto[] Studios { get; init; }
+    /// <summary>
+    /// Список прикрепленных студий
+    /// </summary>
+    public StudioDto[] Studios { get; init; }
 
-        [Display(Name = "Список гостей к которым прикреплён матсер")]
-        public PersonDto[] Persons { get; init; }
-    }
+    /// <summary>
+    /// Список прикрепленных клиентов
+    /// </summary>
+    public PersonDto[] Persons { get; init; }
 }

@@ -1,18 +1,22 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿namespace WebArg.Web.Features.DtoModels.Studio;
 
-namespace WebArg.Web.Features.DtoModels.Studio
+/// <summary>
+/// 
+/// </summary>
+public sealed record StudioDto
 {
-    public sealed record StudioDto
-    {
-        [Display(Name = "Идентификатор студии")]
-        public Guid IsnNode { get; init; }
+    /// <summary>
+    /// Идентификатор студии
+    /// </summary>
+    public Guid IsnNode { get; init; }
 
-        [Display(Name = "Название студии")]
-        public string Name { get; init; }
+    /// <summary>
+    /// Наименование
+    /// </summary>
+    public string Name { get; init; }
 
-        [Display(Name = "Место расположения студии")]
-        public string Location { get; init; }
-
-    }
+    /// <summary>
+    /// Местоположение
+    /// </summary>
+    public string Location { get; init; }
 }

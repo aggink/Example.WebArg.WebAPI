@@ -1,25 +1,34 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebArg.Web.Features.DtoModels.Person
+namespace WebArg.Web.Features.DtoModels.Person;
+
+/// <summary>
+/// Модель клиента для редактирования
+/// </summary>
+public sealed record EditPersonDto
 {
-    public sealed record EditPersonDto
-    {
-        [Display(Name = "Идентификатор гостя")]
-        [Required(ErrorMessageResourceName = "Required")]
-        public Guid IsnNode { get; init; }
+    /// <summary>
+    /// Идентификатор клиента
+    /// </summary>
+    [Required(ErrorMessageResourceName = "Required")]
+    public Guid IsnNode { get; init; }
 
-        [Display(Name = "Идентификатор студии")]
-        [Required(ErrorMessageResourceName = "Required")]
-        public Guid IsnStudio { get; init; }
+    /// <summary>
+    /// Идентификатор студии
+    /// </summary>
+    [Required(ErrorMessageResourceName = "Required")]
+    public Guid IsnStudio { get; init; }
 
-        [Display(Name = "Имя гостя")]
-        [Required(ErrorMessageResourceName = "Required")]
-        [MaxLength(100, ErrorMessageResourceName = "MaxLength")]
-        public string Name { get; init; }
+    /// <summary>
+    /// ФИО
+    /// </summary>
+    [Required(ErrorMessageResourceName = "Required")]
+    [MaxLength(100, ErrorMessageResourceName = "MaxLength")]
+    public string Name { get; init; }
 
-        [Display(Name = "Телефонный номер гостя")]
-        [Required(ErrorMessageResourceName = "Required")]
-        public DateTime LastVisit { get; init; }
-    }
+    /// <summary>
+    /// Дата последнего визита
+    /// </summary>
+    [Required(ErrorMessageResourceName = "Required")]
+    public DateTime LastVisit { get; init; }
 }

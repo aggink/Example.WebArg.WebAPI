@@ -1,25 +1,35 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using WebArg.Web.Features.DtoModels.Master;
+﻿using WebArg.Web.Features.DtoModels.Master;
 using WebArg.Web.Features.DtoModels.Person;
 
-namespace WebArg.Web.Features.DtoModels.Studio
+namespace WebArg.Web.Features.DtoModels.Studio;
+
+/// <summary>
+/// Полные данные о студии
+/// </summary>
+public sealed record InfoStudioDto
 {
-    public sealed record InfoStudioDto
-    {
-        [Display(Name = "Идентификатор студии")]
-        public Guid IsnNode { get; init; }
+    /// <summary>
+    /// Идентификатор студии
+    /// </summary>
+    public Guid IsnNode { get; init; }
 
-        [Display(Name = "Название студии")]
-        public string Name { get; init; }
+    /// <summary>
+    /// Наименование
+    /// </summary>
+    public string Name { get; init; }
 
-        [Display(Name = "Местоположение студии")]
-        public string Location { get; init; }
+    /// <summary>
+    /// Местоположение
+    /// </summary>
+    public string Location { get; init; }
 
-        [Display(Name = "Список мастеров")]
-        public MasterDto[] Masters { get; init; }
+    /// <summary>
+    /// Список мастеров
+    /// </summary>
+    public MasterDto[] Masters { get; init; }
 
-        [Display(Name = "Список гостей")]
-        public PersonDto[] Persons { get; init; }
-    }
+    /// <summary>
+    /// Список клиентов
+    /// </summary>
+    public PersonDto[] Persons { get; init; }
 }

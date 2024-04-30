@@ -1,22 +1,29 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebArg.Web.Features.DtoModels.Master
+namespace WebArg.Web.Features.DtoModels.Master;
+
+/// <summary>
+/// Модель для редактирования мастера
+/// </summary>
+public sealed record EditMasterDto
 {
-    public sealed record EditMasterDto
-    {
-        [Display(Name = "Идентификатор мастера")]
-        [Required(ErrorMessageResourceName = "Required")]
-        public Guid IsnNode { get; init; }
+    /// <summary>
+    /// Идентификатор мастера
+    /// </summary>
+    [Required(ErrorMessageResourceName = "Required")]
+    public Guid IsnNode { get; init; }
 
-        [Display(Name = "Имя мастера")]
-        [Required(ErrorMessageResourceName = "Required")]
-        [MaxLength(100, ErrorMessageResourceName = "MaxLength")]
-        public string Name { get; init; }
+    /// <summary>
+    /// ФИО
+    /// </summary>
+    [Required(ErrorMessageResourceName = "Required")]
+    [MaxLength(100, ErrorMessageResourceName = "MaxLength")]
+    public string Name { get; init; }
 
-        [Display(Name = "Квалификация мастера")]
-        [Required(ErrorMessageResourceName = "Required")]
-        [MaxLength(100, ErrorMessageResourceName = "MaxLength")]
-        public string Qualification { get; init; }
-    }
+    /// <summary>
+    /// Специализация
+    /// </summary>
+    [Required(ErrorMessageResourceName = "Required")]
+    [MaxLength(100, ErrorMessageResourceName = "MaxLength")]
+    public string Qualification { get; init; }
 }

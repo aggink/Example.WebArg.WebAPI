@@ -1,16 +1,21 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebArg.Web.Features.DtoModels.Studio
+namespace WebArg.Web.Features.DtoModels.Studio;
+
+/// <summary>
+/// Связь студии с мастером
+/// </summary>
+public sealed record SetBindWithMasterDto
 {
-    public sealed record SetBindWithMasterDto
-    {
-        [Display(Name = "Идентификатор студии")]
-        [Required(ErrorMessageResourceName = "Required")]
-        public Guid IsnStudio { get; init; }
+    /// <summary>
+    /// Идентификатор студии
+    /// </summary>
+    [Required(ErrorMessageResourceName = "Required")]
+    public Guid IsnStudio { get; init; }
 
-        [Display(Name = "Идентификатор мастера")]
-        [Required(ErrorMessageResourceName = "Required")]
-        public Guid IsnMaster { get; init; }
-    }
+    /// <summary>
+    /// Идентификатор мастера
+    /// </summary>
+    [Required(ErrorMessageResourceName = "Required")]
+    public Guid IsnMaster { get; init; }
 }

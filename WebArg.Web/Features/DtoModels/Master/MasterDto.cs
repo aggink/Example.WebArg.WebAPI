@@ -1,17 +1,22 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿namespace WebArg.Web.Features.DtoModels.Master;
 
-namespace WebArg.Web.Features.DtoModels.Master
+/// <summary>
+/// Мастер
+/// </summary>
+public sealed record MasterDto
 {
-    public sealed record MasterDto
-    {
-        [Display(Name = "Идентификатор мастера")]
-        public Guid IsnNode { get; init; }
+    /// <summary>
+    /// Идентификатор мастера
+    /// </summary>
+    public Guid IsnNode { get; init; }
 
-        [Display(Name = "Имя мастера")]
-        public string Name { get; init; }
+    /// <summary>
+    /// ФИО
+    /// </summary>
+    public string Name { get; init; }
 
-        [Display(Name = "Квалификация мастера")]
-        public string Qualification { get; init; }
-    }
+    /// <summary>
+    /// Квалификация
+    /// </summary>
+    public string Qualification { get; init; }
 }

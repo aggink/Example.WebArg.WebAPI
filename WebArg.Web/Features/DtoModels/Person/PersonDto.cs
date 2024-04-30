@@ -1,20 +1,27 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿namespace WebArg.Web.Features.DtoModels.Person;
 
-namespace WebArg.Web.Features.DtoModels.Person
+/// <summary>
+/// Клиент
+/// </summary>
+public sealed record PersonDto
 {
-    public sealed record PersonDto
-    {
-        [Display(Name = "Идентификатор гостя")]
-        public Guid IsnNode { get; init; }
+    /// <summary>
+    /// Идентификатор клиента
+    /// </summary>
+    public Guid IsnNode { get; init; }
 
-        [Display(Name = "Идентификатор студии")]
-        public Guid IsnStudio { get; init; }
+    /// <summary>
+    /// Идентификатор студии
+    /// </summary>
+    public Guid IsnStudio { get; init; }
 
-        [Display(Name = "Имя гостя")]
-        public string Name { get; init; }
+    /// <summary>
+    /// ФИО
+    /// </summary>
+    public string Name { get; init; }
 
-        [Display(Name = "Дата последнего посещения гостя")]
-        public DateTime LastVisit { get; init; }
-    }
+    /// <summary>
+    /// Дата последнего визита
+    /// </summary>
+    public DateTime LastVisit { get; init; }
 }
