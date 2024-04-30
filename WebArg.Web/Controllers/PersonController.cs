@@ -5,6 +5,9 @@ using WebArg.Web.Features.Interfaces;
 
 namespace WebArg.Web.Controllers;
 
+/// <summary>
+/// Контроллер - клиент
+/// </summary>
 public class PersonController : Controller
 {
     private readonly IPersonManager _personManager;
@@ -14,6 +17,11 @@ public class PersonController : Controller
         _personManager = personManager;
     }
 
+    /// <summary>
+    /// Получить список клиентов
+    /// </summary>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Список клиентов</returns>
     [HttpGet(nameof(GetListPerson), Name = nameof(GetListPerson))]
     public async Task<ActionResult<PersonDto[]>> GetListPerson(CancellationToken cancellationToken)
     {
@@ -21,6 +29,12 @@ public class PersonController : Controller
         return Ok(list);
     }
 
+    /// <summary>
+    /// Получить полную информацию о клиенте
+    /// </summary>
+    /// <param name="isnPerson">Идентификатор клиента</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Полная информация о клиенте</returns>
     [HttpGet(nameof(GetInfoPerson), Name = nameof(GetInfoPerson))]
     public async Task<ActionResult<InfoPersonDto>> GetInfoPerson([FromQuery, Required] Guid isnPerson, CancellationToken cancellationToken)
     {
@@ -28,6 +42,12 @@ public class PersonController : Controller
         return Ok(model);
     }
 
+    /// <summary>
+    /// Получить данные клиента для редактирования
+    /// </summary>
+    /// <param name="isnPerson">Идентификатор клиента</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Данные клиента для редактирования</returns>
     [HttpGet(nameof(GetEditPerson), Name = nameof(GetEditPerson))]
     public async Task<ActionResult<EditPersonDto>> GetEditPerson([FromQuery, Required] Guid isnPerson, CancellationToken cancellationToken)
     {
@@ -35,6 +55,12 @@ public class PersonController : Controller
         return Ok(model);
     }
 
+    /// <summary>
+    /// Создать клиента
+    /// </summary>
+    /// <param name="model">Клиент</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns></returns>
     [HttpPost(nameof(CreateРerson), Name = nameof(CreateРerson))]
     public async Task<ActionResult> CreateРerson([FromBody] EditPersonDto model, CancellationToken cancellationToken)
     {
@@ -42,6 +68,12 @@ public class PersonController : Controller
         return Ok();
     }
 
+    /// <summary>
+    /// Обновить данные клиента
+    /// </summary>
+    /// <param name="model">Клиент</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns></returns>
     [HttpPut(nameof(UpdatePerson), Name = nameof(UpdatePerson))]
     public async Task<ActionResult> UpdatePerson([FromBody] EditPersonDto model, CancellationToken cancellationToken)
     {
@@ -49,6 +81,12 @@ public class PersonController : Controller
         return Ok();
     }
 
+    /// <summary>
+    /// Удалить клиента
+    /// </summary>
+    /// <param name="isnPerson">Идентификатор клиента</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns></returns>
     [HttpDelete(nameof(DeleteРerson), Name = nameof(DeleteРerson))]
     public async Task<ActionResult> DeleteРerson([FromBody, Required] Guid isnPerson, CancellationToken cancellationToken)
     {
