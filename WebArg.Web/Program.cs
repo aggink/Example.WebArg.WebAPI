@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.EntityFrameworkCore;
 using WebArg.Logic.Extensions;
 using WebArg.Storage.Database;
 using WebArg.Web.Extensions;
+using WebArg.Web.Middlewares;
 
 
 
@@ -48,6 +45,8 @@ else
 {
     app.UseHsts();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseRouting();
 
