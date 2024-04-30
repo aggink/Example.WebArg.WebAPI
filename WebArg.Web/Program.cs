@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebArg.Logic.Extensions;
 using WebArg.Storage.Database;
 using WebArg.Web.Extensions;
 using WebArg.Web.Middlewares;
-
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,15 +13,10 @@ builder.Services.AddDbContext<DataContext>(options =>
     }));
 
 builder.Services
-    .AddControllersWithViews()
-    .AddDataAnnotationsLocalization()
+    .AddControllers()
     .AddNewtonsoftJson();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddAutoMappers();
-builder.Services.AddLogicServices();
+builder.Services.AddSwaggerSetup();
 builder.Services.AddFeaturesServices();
 
 var app = builder.Build();
