@@ -22,9 +22,9 @@ public sealed class PersonRepository : IRepository<Person>
         return model;
     }
 
-    public async Task<Person> DeleteAsync(DataContext dataContext, Guid isnNode)
+    public async Task<Person> DeleteAsync(DataContext dataContext, Guid isnNode, CancellationToken cancellationToken)
     {
-        var person = await dataContext.Persons.FirstOrDefaultAsync(x => x.IsnNode == isnNode)
+        var person = await dataContext.Persons.FirstOrDefaultAsync(x => x.IsnNode == isnNode, cancellationToken)
             ?? throw new LogicException($"Гостя с таким идентификатором {isnNode} не существует");
 
         dataContext.Persons.Remove(person);
@@ -32,22 +32,22 @@ public sealed class PersonRepository : IRepository<Person>
         return person;
     }
 
-    public async Task<Person> GetByIdAsync(DataContext dataContext, Guid isnNode)
+    public async Task<Person> GetByIdAsync(DataContext dataContext, Guid isnNode, CancellationToken cancellationToken)
     {
         var person = await dataContext.Persons
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.IsnNode == isnNode)
+            .FirstOrDefaultAsync(x => x.IsnNode == isnNode, cancellationToken)
                 ?? throw new LogicException($"Гостя с таким идентификатором {isnNode} не существует");
 
         return person;
     }
 
-    public async Task<Person> UpdateAsync(DataContext dataContext, Person model)
+    public async Task<Person> UpdateAsync(DataContext dataContext, Person model, CancellationToken cancellationToken)
     {
-        var person = await dataContext.Persons.FirstOrDefaultAsync(x => x.IsnNode == model.IsnNode)
+        var person = await dataContext.Persons.FirstOrDefaultAsync(x => x.IsnNode == model.IsnNode, cancellationToken)
             ?? throw new LogicException($"Гостя с таким идентификатором {model.IsnNode} не существует");
 
-        var studio = await dataContext.Studios.FirstOrDefaultAsync(x => x.IsnNode == model.IsnStudio)
+        var studio = await dataContext.Studios.FirstOrDefaultAsync(x => x.IsnNode == model.IsnStudio, cancellationToken)
             ?? throw new LogicException($"Студии с таким идентификатором {model.IsnStudio} не существует");
 
         person.IsnStudio = model.IsnStudio;

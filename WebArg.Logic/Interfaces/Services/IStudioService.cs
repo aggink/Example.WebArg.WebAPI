@@ -14,7 +14,8 @@ public interface IStudioService
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="isnStudio">Идентификатор студии</param>
     /// <param name="isnMaster">Идентификатор мастера</param>
-    Task SetBindWithMasterAsync(DataContext dataContext, Guid isnStudio, Guid isnMaster);
+    /// <param name="cancellationToken">Токен отмены</param>
+    Task SetBindWithMasterAsync(DataContext dataContext, Guid isnStudio, Guid isnMaster, CancellationToken cancellationToken);
 
     /// <summary>
     /// Удалить связь студии с мастером
@@ -22,7 +23,8 @@ public interface IStudioService
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="isnStudio">Идентификатор студии</param>
     /// <param name="isnMaster">Идентификатор мастера</param>
-    Task DeleteBindWithMasterAsync(DataContext dataContext, Guid isnStudio, Guid isnMaster);
+    /// <param name="cancellationToken">Токен отмены</param>
+    Task DeleteBindWithMasterAsync(DataContext dataContext, Guid isnStudio, Guid isnMaster, CancellationToken cancellationToken);
 
     /// <summary>
     /// Получить список студий
@@ -36,6 +38,7 @@ public interface IStudioService
     /// </summary>
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="isnStudio">Идентификатор студии</param>
+    /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Информация о студии</returns>
-    Task<Studio> GetInfoStudioAsync(DataContext dataContext, Guid isnStudio);
+    Task<Studio> GetInfoStudioAsync(DataContext dataContext, Guid isnStudio, CancellationToken cancellationToken);
 }

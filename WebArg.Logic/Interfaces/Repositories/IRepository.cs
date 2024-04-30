@@ -14,8 +14,9 @@ public interface IRepository<TModel>
     /// </summary>
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="isnNode">Идентификатор записи</param>
+    /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Запись</returns>
-    Task<TModel> GetByIdAsync(DataContext dataContext, Guid isnNode);
+    Task<TModel> GetByIdAsync(DataContext dataContext, Guid isnNode, CancellationToken cancellationToken);
 
     /// <summary>
     /// Добавить запись в базу данных
@@ -30,14 +31,16 @@ public interface IRepository<TModel>
     /// </summary>
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="model">Модель</param>
+    /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Обновленная запись в базе данных</returns>
-    Task<TModel> UpdateAsync(DataContext dataContext, TModel model);
+    Task<TModel> UpdateAsync(DataContext dataContext, TModel model, CancellationToken cancellationToken);
 
     /// <summary>
     /// Удалить запись из базу данных
     /// </summary>
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="isnNode">Идентификатор записи</param>
+    /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Удаленная запись из базы данных</returns>
-    Task<TModel> DeleteAsync(DataContext dataContext, Guid isnNode);
+    Task<TModel> DeleteAsync(DataContext dataContext, Guid isnNode, CancellationToken cancellationToken);
 }

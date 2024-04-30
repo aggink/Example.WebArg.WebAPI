@@ -1,22 +1,18 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using WebArg.Web.Features.DtoModels.Person;
+﻿using WebArg.Web.Features.DtoModels.Person;
 
-namespace WebArg.Web.Features.Interfaces
+namespace WebArg.Web.Features.Interfaces;
+
+public interface IPersonManager
 {
-    public interface IPersonManager
-    {
-        Task CreateРersonAsync(EditPersonDto source, CancellationToken cancellationToken);
+    Task CreatePersonAsync(EditPersonDto source, CancellationToken cancellationToken);
 
-        Task UpdateРersonAsync(EditPersonDto source, CancellationToken cancellationToken);
+    Task UpdatePersonAsync(EditPersonDto source, CancellationToken cancellationToken);
 
-        Task<PersonDto> DeleteРersonAsync(Guid isnPerson, CancellationToken cancellationToken);
+    Task<PersonDto> DeletePersonAsync(Guid isnPerson, CancellationToken cancellationToken);
 
-        Task<EditPersonDto> GetРersonAsync(Guid isnPerson);
+    Task<EditPersonDto> GetPersonAsync(Guid isnPerson, CancellationToken cancellationToken);
 
-        Task<PersonDto[]> GetListРersonAsync(Guid? isnStudio);
+    Task<PersonDto[]> GetListPersonAsync(Guid? isnStudio);
 
-        Task<InfoPersonDto> GetInfoPersonAsync(Guid isnPerson);
-    }
+    Task<InfoPersonDto> GetInfoPersonAsync(Guid isnPerson, CancellationToken cancellationToken);
 }

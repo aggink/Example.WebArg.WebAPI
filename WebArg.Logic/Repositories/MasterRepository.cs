@@ -19,9 +19,9 @@ public sealed class MasterRepository : IRepository<Master>
         return model;
     }
 
-    public async Task<Master> DeleteAsync(DataContext dataContext, Guid isnNode)
+    public async Task<Master> DeleteAsync(DataContext dataContext, Guid isnNode, CancellationToken cancellationToken)
     {
-        var master = await dataContext.Masters.FirstOrDefaultAsync(x => x.IsnNode == isnNode)
+        var master = await dataContext.Masters.FirstOrDefaultAsync(x => x.IsnNode == isnNode, cancellationToken)
             ?? throw new LogicException($"Мастера с таким идентификатором {isnNode} не существует");
 
         dataContext.Masters.Remove(master);
@@ -29,19 +29,19 @@ public sealed class MasterRepository : IRepository<Master>
         return master;
     }
 
-    public async Task<Master> GetByIdAsync(DataContext dataContext, Guid isnNode)
+    public async Task<Master> GetByIdAsync(DataContext dataContext, Guid isnNode, CancellationToken cancellationToken)
     {
         var master = await dataContext.Masters
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.IsnNode == isnNode)
+            .FirstOrDefaultAsync(x => x.IsnNode == isnNode, cancellationToken)
                 ?? throw new LogicException($"Мастера с таким идентификатором {isnNode} не существует");
 
         return master;
     }
 
-    public async Task<Master> UpdateAsync(DataContext dataContext, Master model)
+    public async Task<Master> UpdateAsync(DataContext dataContext, Master model, CancellationToken cancellationToken)
     {
-        var master = await dataContext.Masters.FirstOrDefaultAsync(x => x.IsnNode == model.IsnNode)
+        var master = await dataContext.Masters.FirstOrDefaultAsync(x => x.IsnNode == model.IsnNode, cancellationToken)
             ?? throw new LogicException($"Мастера с таким идентификатором {model.IsnNode} не существует");
 
         master.Name = model.Name;

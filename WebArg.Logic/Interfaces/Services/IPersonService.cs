@@ -21,6 +21,7 @@ public interface IPersonService
     /// </summary>
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="isnPerson">Идентификатор клиента</param>
+    /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Информация о клиенте</returns>
-    Task<Person> GetInfoPersonAsync(DataContext dataContext, Guid isnPerson);
+    Task<Person> GetInfoPersonAsync(DataContext dataContext, Guid isnPerson, CancellationToken cancellationToken);
 }

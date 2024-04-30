@@ -19,9 +19,9 @@ public sealed class StudioRepository : IRepository<Studio>
         return model;
     }
 
-    public async Task<Studio> DeleteAsync(DataContext dataContext, Guid isnNode)
+    public async Task<Studio> DeleteAsync(DataContext dataContext, Guid isnNode, CancellationToken cancellationToken)
     {
-        var studio = await dataContext.Studios.FirstOrDefaultAsync(x => x.IsnNode == isnNode)
+        var studio = await dataContext.Studios.FirstOrDefaultAsync(x => x.IsnNode == isnNode, cancellationToken)
             ?? throw new LogicException($"Студии с таким идентификатором {isnNode} не существует");
 
         dataContext.Studios.Remove(studio);
@@ -29,19 +29,19 @@ public sealed class StudioRepository : IRepository<Studio>
         return studio;
     }
 
-    public async Task<Studio> GetByIdAsync(DataContext dataContext, Guid isnNode)
+    public async Task<Studio> GetByIdAsync(DataContext dataContext, Guid isnNode, CancellationToken cancellationToken)
     {
         var studio = await dataContext.Studios
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.IsnNode == isnNode)
+            .FirstOrDefaultAsync(x => x.IsnNode == isnNode, cancellationToken)
                 ?? throw new LogicException($"Студии с таким идентификатором {isnNode} не существует");
 
         return studio;
     }
 
-    public async Task<Studio> UpdateAsync(DataContext dataContext, Studio model)
+    public async Task<Studio> UpdateAsync(DataContext dataContext, Studio model, CancellationToken cancellationToken)
     {
-        var studio = await dataContext.Studios.FirstOrDefaultAsync(x => x.IsnNode == model.IsnNode)
+        var studio = await dataContext.Studios.FirstOrDefaultAsync(x => x.IsnNode == model.IsnNode, cancellationToken)
             ?? throw new LogicException($"Студии с таким идентификатором {model.IsnNode} не существует");
 
         studio.Name = model.Name;

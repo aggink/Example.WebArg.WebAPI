@@ -11,12 +11,12 @@ namespace WebArg.Logic.Services;
 /// </summary>
 public sealed class MasterService : IMasterService
 {
-    public async Task SetBindWithPersonAsync(DataContext dataContext, Guid isnMaster, Guid isnPerson)
+    public async Task SetBindWithPersonAsync(DataContext dataContext, Guid isnMaster, Guid isnPerson, CancellationToken cancellationToken)
     {
-        var person = await dataContext.Persons.FirstOrDefaultAsync(x => x.IsnNode == isnPerson)
+        var person = await dataContext.Persons.FirstOrDefaultAsync(x => x.IsnNode == isnPerson, cancellationToken)
             ?? throw new LogicException($"Гостя с таким идентификатором {isnPerson} не существует");
 
-        var master = await dataContext.Masters.FirstOrDefaultAsync(x => x.IsnNode == isnMaster)
+        var master = await dataContext.Masters.FirstOrDefaultAsync(x => x.IsnNode == isnMaster, cancellationToken)
             ?? throw new LogicException($"Мастера с идентификатором {isnMaster} не существует");
 
         var trainerCustomer = new MasterPerson
@@ -28,10 +28,10 @@ public sealed class MasterService : IMasterService
         dataContext.MastersPersons.Add(trainerCustomer);
     }
 
-    public async Task DeleteBindWithPersonAsync(DataContext dataContext, Guid isnMaster, Guid isnPerson)
+    public async Task DeleteBindWithPersonAsync(DataContext dataContext, Guid isnMaster, Guid isnPerson, CancellationToken cancellationToken)
     {
         var trainerCustomer = await dataContext.MastersPersons
-                .FirstOrDefaultAsync(x => x.IsnMaster == isnMaster && x.IsnPerson == isnPerson)
+                .FirstOrDefaultAsync(x => x.IsnMaster == isnMaster && x.IsnPerson == isnPerson, cancellationToken)
                     ?? throw new LogicException($"Связи мастера {isnMaster} c клиентом {isnPerson} не существует");
 
         dataContext.MastersPersons.Remove(trainerCustomer);
@@ -45,7 +45,7 @@ public sealed class MasterService : IMasterService
         return trainerQuery;
     }
 
-    public async Task<Master> GetInfoMasterAsync(DataContext dataContext, Guid isnMaster)
+    public async Task<Master> GetInfoMasterAsync(DataContext dataContext, Guid isnMaster, CancellationToken cancellationToken)
     {
         var master = await dataContext.Masters
             .AsNoTracking()
@@ -53,7 +53,7 @@ public sealed class MasterService : IMasterService
                 .ThenInclude(x => x.Studio)
             .Include(x => x.MasterPersons)
                 .ThenInclude(x => x.Person)
-            .FirstOrDefaultAsync(x => x.IsnNode == isnMaster)
+            .FirstOrDefaultAsync(x => x.IsnNode == isnMaster, cancellationToken)
                 ?? throw new LogicException($"Мастера с идентификатором {isnMaster} не существует");
 
         return master;

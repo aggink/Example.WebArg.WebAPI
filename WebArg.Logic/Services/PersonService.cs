@@ -22,14 +22,14 @@ public sealed class PersonService : IPersonService
         return customerQuery;
     }
 
-    public async Task<Person> GetInfoPersonAsync(DataContext dataContext, Guid isnPerson)
+    public async Task<Person> GetInfoPersonAsync(DataContext dataContext, Guid isnPerson, CancellationToken cancellationToken)
     {
         var person = await dataContext.Persons
             .AsNoTracking()
             .Include(x => x.Studio)
             .Include(x => x.PersonMasters)
                 .ThenInclude(x => x.Master)
-            .FirstOrDefaultAsync(x => x.IsnNode == isnPerson)
+            .FirstOrDefaultAsync(x => x.IsnNode == isnPerson, cancellationToken)
                 ?? throw new LogicException($"Гостя с таким идентификатором {isnPerson} не существует");
 
         return person;

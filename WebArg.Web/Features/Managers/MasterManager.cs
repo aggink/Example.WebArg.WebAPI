@@ -1,8 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using WebArg.Logic.Interfaces.Repositories;
 using WebArg.Logic.Interfaces.Services;
 using WebArg.Storage.Database;
@@ -14,6 +10,9 @@ using WebArg.Web.Features.Interfaces;
 
 namespace WebArg.Web.Features.Managers;
 
+/// <summary>
+/// Менеджер обработки <see cref="Master"/>
+/// </summary>
 public sealed class MasterManager : IMasterManager
 {
     private readonly IMapper _mapper;
@@ -47,42 +46,41 @@ public sealed class MasterManager : IMasterManager
     {
         var model = _mapper.Map<Master>(source);
 
-        _masterRepository.Update(_dataContext, model);
+        await _masterRepository.UpdateAsync(_dataContext, model, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteMasterAsync(Guid isnMaster, CancellationToken cancellationToken)
     {
-        _masterRepository.Delete(_dataContext, isnMaster);
+        await _masterRepository.DeleteAsync(_dataContext, isnMaster, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<EditMasterDto> GetMasterAsync(Guid isnMaster)
+    public async Task<EditMasterDto> GetMasterAsync(Guid isnMaster, CancellationToken cancellationToken)
     {
-        var model = _masterRepository.GetById(_dataContext, isnMaster);
+        var model = await _masterRepository.GetByIdAsync(_dataContext, isnMaster, cancellationToken);
 
         return _mapper.Map<EditMasterDto>(model);
     }
 
     public async Task SetBindWithPersonAsync(SetBindWithPersonDto model, CancellationToken cancellationToken)
     {
-        _masterService.SetBindWithPerson(_dataContext, model.IsnMaster, model.IsnPerson);
+        await _masterService.SetBindWithPersonAsync(_dataContext, model.IsnMaster, model.IsnPerson, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteBindWithPersonAsync(SetBindWithPersonDto model, CancellationToken cancellationToken)
     {
-        _masterService.DeleteBindWithPerson(_dataContext, model.IsnMaster, model.IsnPerson);
+        await _masterService.DeleteBindWithPersonAsync(_dataContext, model.IsnMaster, model.IsnPerson, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<MasterDto[]> GetListMasterAsync()
     {
-
         var masters = _masterService
             .GetMasterQueryable(_dataContext)
             .Select(master => new MasterDto
@@ -96,10 +94,9 @@ public sealed class MasterManager : IMasterManager
         return masters;
     }
 
-    public async Task<InfoMasterDto> GetInfoMasterAsync(Guid isnMaster)
+    public async Task<InfoMasterDto> GetInfoMasterAsync(Guid isnMaster, CancellationToken cancellationToken)
     {
-        var model = _masterService.GetInfoMaster(_dataContext, isnMaster);
-
+        var model = await _masterService.GetInfoMasterAsync(_dataContext, isnMaster, cancellationToken);
 
         return new InfoMasterDto
         {

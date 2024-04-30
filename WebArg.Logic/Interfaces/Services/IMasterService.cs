@@ -14,7 +14,8 @@ public interface IMasterService
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="isnMaster">Идентификатор мастера</param>
     /// <param name="isnPerson">Идентификатор клиента</param>
-    Task SetBindWithPersonAsync(DataContext dataContext, Guid isnMaster, Guid isnPerson);
+    /// <param name="cancellationToken">Токен отмены</param>
+    Task SetBindWithPersonAsync(DataContext dataContext, Guid isnMaster, Guid isnPerson, CancellationToken cancellationToken);
 
     /// <summary>
     /// Удалить связь мастером и клиента
@@ -22,7 +23,8 @@ public interface IMasterService
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="isnMaster">Идентификатор мастера</param>
     /// <param name="isnPerson">Идентификатор клиента</param>
-    Task DeleteBindWithPersonAsync(DataContext dataContext, Guid isnMaster, Guid isnPerson);
+    /// <param name="cancellationToken">Токен отмены</param>
+    Task DeleteBindWithPersonAsync(DataContext dataContext, Guid isnMaster, Guid isnPerson, CancellationToken cancellationToken);
 
     /// <summary>
     /// Получить список мастеров
@@ -36,6 +38,7 @@ public interface IMasterService
     /// </summary>
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="isnMaster">Идентификатор матера</param>
+    /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Информация о мастере</returns>
-    Task<Master> GetInfoMasterAsync(DataContext dataContext, Guid isnMaster);
+    Task<Master> GetInfoMasterAsync(DataContext dataContext, Guid isnMaster, CancellationToken cancellationToken);
 }

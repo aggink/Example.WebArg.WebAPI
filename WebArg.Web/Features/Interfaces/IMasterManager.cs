@@ -1,27 +1,23 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using WebArg.Web.Features.DtoModels.Master;
+﻿using WebArg.Web.Features.DtoModels.Master;
 
-namespace WebArg.Web.Features.Interfaces
+namespace WebArg.Web.Features.Interfaces;
+
+public interface IMasterManager
 {
-    public interface IMasterManager
-    {
-        Task CreateMasterAsync(EditMasterDto source, CancellationToken cancellationToken);
+    Task CreateMasterAsync(EditMasterDto source, CancellationToken cancellationToken);
 
-        Task UpdateMasterAsync(EditMasterDto source, CancellationToken cancellationToken);
+    Task UpdateMasterAsync(EditMasterDto source, CancellationToken cancellationToken);
 
-        Task DeleteMasterAsync(Guid isnMaster, CancellationToken cancellationToken);
+    Task DeleteMasterAsync(Guid isnMaster, CancellationToken cancellationToken);
 
-        Task<EditMasterDto> GetMasterAsync(Guid isnMaster);
+    Task<EditMasterDto> GetMasterAsync(Guid isnMaster, CancellationToken cancellationToken);
 
-        Task SetBindWithPersonAsync(SetBindWithPersonDto model, CancellationToken cancellationToken);
+    Task SetBindWithPersonAsync(SetBindWithPersonDto model, CancellationToken cancellationToken);
 
-        Task DeleteBindWithPersonAsync(SetBindWithPersonDto model, CancellationToken cancellationToken);
+    Task DeleteBindWithPersonAsync(SetBindWithPersonDto model, CancellationToken cancellationToken);
 
-        Task<MasterDto[]> GetListMasterAsync();
+    Task<MasterDto[]> GetListMasterAsync();
 
-        Task<InfoMasterDto> GetInfoMasterAsync(Guid isnMaster);
+    Task<InfoMasterDto> GetInfoMasterAsync(Guid isnMaster, CancellationToken cancellationToken);
 
-    }
 }
