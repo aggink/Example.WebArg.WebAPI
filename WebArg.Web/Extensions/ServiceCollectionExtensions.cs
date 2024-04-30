@@ -5,9 +5,15 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using WebArg.Logic.Extensions;
 using WebArg.Storage.Database;
-using WebArg.Web.Features.Interfaces;
-using WebArg.Web.Features.Managers;
-using WebArg.Web.Features.Mappers;
+using WebArg.Web.Features.Masters.Managers;
+using WebArg.Web.Features.Masters.Managers.Interfaces;
+using WebArg.Web.Features.Masters.Mappers;
+using WebArg.Web.Features.Persons.Managers;
+using WebArg.Web.Features.Persons.Managers.Interfaces;
+using WebArg.Web.Features.Persons.Mappers;
+using WebArg.Web.Features.Studios.Managers;
+using WebArg.Web.Features.Studios.Managers.Interfaces;
+using WebArg.Web.Features.Studios.Mappers;
 
 namespace WebArg.Web.Extensions;
 

@@ -1,10 +1,10 @@
-﻿using Crypto.Web.DataAnnotations.DtoModels;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using WebArg.Web.DataAnnotations.DtoModels;
 
-namespace Crypto.Web.DataAnnotations;
+namespace WebArg.Web.DataAnnotations;
 
 /// <summary>
 /// Настройка автоматической валидации входных параметров через FluentValidation

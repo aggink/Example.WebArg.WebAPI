@@ -1,4 +1,4 @@
-﻿namespace Crypto.Web.DataAnnotations.DtoModels;
+﻿namespace WebArg.Web.DataAnnotations.DtoModels;
 
 /// <summary>
 /// Описание ошибок

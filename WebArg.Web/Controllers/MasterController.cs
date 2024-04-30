@@ -1,8 +1,8 @@
-﻿using Crypto.Web.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using WebArg.Web.Features.DtoModels.Master;
-using WebArg.Web.Features.Interfaces;
+using WebArg.Web.DataAnnotations;
+using WebArg.Web.Features.Masters.DtoModels;
+using WebArg.Web.Features.Masters.Managers.Interfaces;
 
 namespace WebArg.Web.Controllers;
 
