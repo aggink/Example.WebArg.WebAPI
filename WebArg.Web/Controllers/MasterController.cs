@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Crypto.Web.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using WebArg.Web.Features.DtoModels.Master;
 using WebArg.Web.Features.Interfaces;
@@ -8,6 +9,9 @@ namespace WebArg.Web.Controllers;
 /// <summary>
 /// Контроллер - мастера
 /// </summary>
+[Route("[controller]")]
+[Produces("application/json")]
+[ValidateUsingFluentValidation]
 public class MasterController : Controller
 {
     private readonly IMasterManager _masterManager;

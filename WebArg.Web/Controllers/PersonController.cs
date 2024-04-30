@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Crypto.Web.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using WebArg.Web.Features.DtoModels.Person;
 using WebArg.Web.Features.Interfaces;
@@ -8,6 +9,9 @@ namespace WebArg.Web.Controllers;
 /// <summary>
 /// Контроллер - клиент
 /// </summary>
+[Route("[controller]")]
+[Produces("application/json")]
+[ValidateUsingFluentValidation]
 public class PersonController : Controller
 {
     private readonly IPersonManager _personManager;
