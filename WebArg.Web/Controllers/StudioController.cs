@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using WebArg.Web.DataAnnotations;
 using WebArg.Web.Features.Studios.DtoModels;
 using WebArg.Web.Features.Studios.Managers.Interfaces;
+using WebArg.Web.Features.Studios.Queries;
 
 namespace WebArg.Web.Controllers;
 
@@ -35,26 +35,26 @@ public class StudioController : Controller
     /// <summary>
     /// Получить полную информацию о студии
     /// </summary>
-    /// <param name="isnStudio">Идентификатор студии</param>
+    /// <param name="query">Dto параметр</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Полная информация о студии</returns>
     [HttpGet(nameof(GetInfoStudio), Name = nameof(GetInfoStudio))]
-    public async Task<ActionResult<InfoStudioDto>> GetInfoStudio([FromQuery, Required] Guid isnStudio, CancellationToken cancellationToken)
+    public async Task<ActionResult<InfoStudioDto>> GetInfoStudio(GetInfoStudioQuery query, CancellationToken cancellationToken)
     {
-        var model = await _studioManager.GetInfoStudioAsync(isnStudio, cancellationToken);
+        var model = await _studioManager.GetInfoStudioAsync(query.IsnStudio, cancellationToken);
         return Ok(model);
     }
 
     /// <summary>
     /// Получить данные о студии
     /// </summary>
-    /// <param name="isnStudio">Идентификатор студии</param>
+    /// <param name="query">Dto параметр</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Данные о студии</returns>
     [HttpGet(nameof(GetEditStudio), Name = nameof(GetEditStudio))]
-    public async Task<ActionResult<EditStudioDto>> GetEditStudio([FromQuery, Required] Guid isnStudio, CancellationToken cancellationToken)
+    public async Task<ActionResult<EditStudioDto>> GetEditStudio(GetEditStudioQuery query, CancellationToken cancellationToken)
     {
-        var model = await _studioManager.GetStudioAsync(isnStudio, cancellationToken);
+        var model = await _studioManager.GetStudioAsync(query.IsnStudio, cancellationToken);
         return Ok(model);
     }
 
@@ -87,13 +87,13 @@ public class StudioController : Controller
     /// <summary>
     /// Удалить студию
     /// </summary>
-    /// <param name="isnStudio">Идентификатор студии</param>
+    /// <param name="query">Dto параметр</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns></returns>
     [HttpDelete(nameof(DeleteStudio), Name = nameof(DeleteStudio))]
-    public async Task<ActionResult> DeleteStudio([FromBody, Required] Guid isnStudio, CancellationToken cancellationToken)
+    public async Task<ActionResult> DeleteStudio(DeleteStudioQuery query, CancellationToken cancellationToken)
     {
-        await _studioManager.DeleteStudioAsync(isnStudio, cancellationToken);
+        await _studioManager.DeleteStudioAsync(query.IsnStudio, cancellationToken);
         return Ok();
     }
 

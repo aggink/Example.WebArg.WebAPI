@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using WebArg.Web.DataAnnotations;
 using WebArg.Web.Features.Masters.DtoModels;
 using WebArg.Web.Features.Masters.Managers.Interfaces;
+using WebArg.Web.Features.Masters.Queries;
 
 namespace WebArg.Web.Controllers;
 
@@ -35,26 +35,26 @@ public class MasterController : Controller
     /// <summary>
     /// Получить полную информацию о мастере
     /// </summary>
-    /// <param name="isnMaster">Идентификатор мастера</param>
+    /// <param name="query">Dto параметр</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Полная информация о мастере</returns>
     [HttpGet(nameof(GetInfoMaster), Name = nameof(GetInfoMaster))]
-    public async Task<ActionResult<InfoMasterDto>> GetInfoMaster([FromQuery, Required] Guid isnMaster, CancellationToken cancellationToken)
+    public async Task<ActionResult<InfoMasterDto>> GetInfoMaster(GetInfoMasterQuery query, CancellationToken cancellationToken)
     {
-        var model = await _masterManager.GetInfoMasterAsync(isnMaster, cancellationToken);
+        var model = await _masterManager.GetInfoMasterAsync(query.IsnMaster, cancellationToken);
         return Ok(model);
     }
 
     /// <summary>
     /// Получить данные мастера для редактирования
     /// </summary>
-    /// <param name="isnMaster">Идентификатор мастера</param>
+    /// <param name="query">Dto параметр</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Данные мастера для редактирования</returns>
     [HttpGet(nameof(GetEditMaster), Name = nameof(GetEditMaster))]
-    public async Task<ActionResult<EditMasterDto>> GetEditMaster([FromQuery, Required] Guid isnMaster, CancellationToken cancellationToken)
+    public async Task<ActionResult<EditMasterDto>> GetEditMaster(GetEditMasterQuery query, CancellationToken cancellationToken)
     {
-        var model = await _masterManager.GetMasterAsync(isnMaster, cancellationToken);
+        var model = await _masterManager.GetMasterAsync(query.IsnMaster, cancellationToken);
         return Ok(model);
     }
 
@@ -87,13 +87,13 @@ public class MasterController : Controller
     /// <summary>
     /// Удалить мастера
     /// </summary>
-    /// <param name="isnMaster">Идентификатор мастера</param>
+    /// <param name="query">Dto параметр</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns></returns>
     [HttpDelete(nameof(DeleteMaster), Name = nameof(DeleteMaster))]
-    public async Task<ActionResult> DeleteMaster([FromBody, Required] Guid isnMaster, CancellationToken cancellationToken)
+    public async Task<ActionResult> DeleteMaster(DeleteMasterQuery query, CancellationToken cancellationToken)
     {
-        await _masterManager.DeleteMasterAsync(isnMaster, cancellationToken);
+        await _masterManager.DeleteMasterAsync(query.IsnMaster, cancellationToken);
         return Ok();
     }
 

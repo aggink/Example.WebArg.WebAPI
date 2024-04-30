@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using WebArg.Web.DataAnnotations;
 using WebArg.Web.Features.Persons.DtoModels;
 using WebArg.Web.Features.Persons.Managers.Interfaces;
+using WebArg.Web.Features.Persons.Queries;
 
 namespace WebArg.Web.Controllers;
 
@@ -24,10 +24,9 @@ public class PersonController : Controller
     /// <summary>
     /// Получить список клиентов
     /// </summary>
-    /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Список клиентов</returns>
     [HttpGet(nameof(GetListPerson), Name = nameof(GetListPerson))]
-    public async Task<ActionResult<PersonDto[]>> GetListPerson(CancellationToken cancellationToken)
+    public async Task<ActionResult<PersonDto[]>> GetListPerson()
     {
         var list = await _personManager.GetListPersonAsync(null);
         return Ok(list);
@@ -36,26 +35,26 @@ public class PersonController : Controller
     /// <summary>
     /// Получить полную информацию о клиенте
     /// </summary>
-    /// <param name="isnPerson">Идентификатор клиента</param>
+    /// <param name="query">Dto параметр</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Полная информация о клиенте</returns>
     [HttpGet(nameof(GetInfoPerson), Name = nameof(GetInfoPerson))]
-    public async Task<ActionResult<InfoPersonDto>> GetInfoPerson([FromQuery, Required] Guid isnPerson, CancellationToken cancellationToken)
+    public async Task<ActionResult<InfoPersonDto>> GetInfoPerson(GetInfoPersonQuery query, CancellationToken cancellationToken)
     {
-        var model = await _personManager.GetInfoPersonAsync(isnPerson, cancellationToken);
+        var model = await _personManager.GetInfoPersonAsync(query.IsnPerson, cancellationToken);
         return Ok(model);
     }
 
     /// <summary>
     /// Получить данные клиента для редактирования
     /// </summary>
-    /// <param name="isnPerson">Идентификатор клиента</param>
+    /// <param name="query">Dto параметр</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Данные клиента для редактирования</returns>
     [HttpGet(nameof(GetEditPerson), Name = nameof(GetEditPerson))]
-    public async Task<ActionResult<EditPersonDto>> GetEditPerson([FromQuery, Required] Guid isnPerson, CancellationToken cancellationToken)
+    public async Task<ActionResult<EditPersonDto>> GetEditPerson(GetEditPersonQuery query, CancellationToken cancellationToken)
     {
-        var model = await _personManager.GetPersonAsync(isnPerson, cancellationToken);
+        var model = await _personManager.GetPersonAsync(query.IsnPerson, cancellationToken);
         return Ok(model);
     }
 
@@ -88,13 +87,13 @@ public class PersonController : Controller
     /// <summary>
     /// Удалить клиента
     /// </summary>
-    /// <param name="isnPerson">Идентификатор клиента</param>
+    /// <param name="query">Dto параметр</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns></returns>
     [HttpDelete(nameof(DeleteРerson), Name = nameof(DeleteРerson))]
-    public async Task<ActionResult> DeleteРerson([FromBody, Required] Guid isnPerson, CancellationToken cancellationToken)
+    public async Task<ActionResult> DeleteРerson(DeleteРersonQuery query, CancellationToken cancellationToken)
     {
-        await _personManager.DeletePersonAsync(isnPerson, cancellationToken);
+        await _personManager.DeletePersonAsync(query.IsnPerson, cancellationToken);
         return Ok();
     }
 }
