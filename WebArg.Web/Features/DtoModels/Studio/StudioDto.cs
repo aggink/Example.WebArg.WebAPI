@@ -1,7 +1,7 @@
 ﻿namespace WebArg.Web.Features.DtoModels.Studio;
 
 /// <summary>
-/// 
+/// Студия
 /// </summary>
 public sealed record StudioDto
 {

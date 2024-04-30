@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using WebArg.Logic.Extensions;
@@ -18,16 +20,12 @@ public static class ServiceCollectionExtensions
     /// Регистрация сервисов Web
     /// </summary>
     /// <param name="services">Коллекция дескрипторов служб</param>
-    /// <param name="configuration">Набор свойств конфигурации</param>
-    public static void AddFeaturesServices(this IServiceCollection services, IConfiguration configuration)
+    public static void AddFeaturesServices(this IServiceCollection services)
     {
-        services.AddDatabase(configuration);
-
         services.AddTransient<IStudioManager, StudioManager>();
         services.AddTransient<IPersonManager, PersonManager>();
         services.AddTransient<IMasterManager, MasterManager>();
 
-        services.AddAutoMappers();
         services.AddLogicServices();
     }
 
@@ -77,5 +75,20 @@ public static class ServiceCollectionExtensions
         {
             o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
         }));
+    }
+
+    /// <summary>
+    /// Регистрация FluentValidation в DI
+    /// </summary>
+    /// <param name="services">Коллекция дескрипторов служб</param>
+    /// <param name="type">Глобальный тип для поиска валидаторов</param>
+    public static void AddFluentValidationSetup(this IServiceCollection services, Type type)
+    {
+        services.AddFluentValidationAutoValidation();
+        services.AddFluentValidationClientsideAdapters();
+        services.AddValidatorsFromAssemblyContaining(type);
+
+        ValidatorOptions.Global.DefaultClassLevelCascadeMode = CascadeMode.Stop;
+        ValidatorOptions.Global.DefaultRuleLevelCascadeMode = CascadeMode.Stop;
     }
 }

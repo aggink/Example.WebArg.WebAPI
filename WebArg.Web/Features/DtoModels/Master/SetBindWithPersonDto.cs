@@ -10,12 +10,12 @@ public sealed record SetBindWithPersonDto
     /// <summary>
     /// Идентификатор мастера
     /// </summary>
-    [Required(ErrorMessageResourceName = "Required")]
+    [Required]
     public Guid IsnMaster { get; init; }
 
     /// <summary>
     /// Идентификатор клиента
     /// </summary>
-    [Required(ErrorMessageResourceName = "Required")]
+    [Required]
     public Guid IsnPerson { get; init; }
 }

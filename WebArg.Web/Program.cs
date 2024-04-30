@@ -1,17 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Serilog;
-using WebArg.Storage.Database;
+﻿using Serilog;
 using WebArg.Web.Extensions;
 using WebArg.Web.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDbContext<DataContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), o =>
-    {
-
-        o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
-    }));
 
 builder.Host.UseSerilog((context, Configuration) =>
    Configuration.ReadFrom.Configuration(context.Configuration));
@@ -20,8 +11,12 @@ builder.Services
     .AddControllers()
     .AddNewtonsoftJson();
 
+builder.Services.AddDatabase(builder.Configuration);
+
+builder.Services.AddAutoMappers();
 builder.Services.AddSwaggerSetup();
-builder.Services.AddFeaturesServices(builder.Configuration);
+builder.Services.AddFeaturesServices();
+builder.Services.AddFluentValidationSetup(typeof(Program));
 
 var app = builder.Build();
 
@@ -54,3 +49,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

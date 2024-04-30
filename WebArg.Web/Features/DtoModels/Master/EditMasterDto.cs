@@ -10,20 +10,18 @@ public sealed record EditMasterDto
     /// <summary>
     /// Идентификатор мастера
     /// </summary>
-    [Required(ErrorMessageResourceName = "Required")]
+    [Required]
     public Guid IsnNode { get; init; }
 
     /// <summary>
     /// ФИО
     /// </summary>
-    [Required(ErrorMessageResourceName = "Required")]
-    [MaxLength(100, ErrorMessageResourceName = "MaxLength")]
+    [Required]
     public string Name { get; init; }
 
     /// <summary>
     /// Специализация
     /// </summary>
-    [Required(ErrorMessageResourceName = "Required")]
-    [MaxLength(100, ErrorMessageResourceName = "MaxLength")]
+    [Required]
     public string Qualification { get; init; }
 }

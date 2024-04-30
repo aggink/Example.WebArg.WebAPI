@@ -10,20 +10,18 @@ public sealed record EditStudioDto
     /// <summary>
     /// Идентификатор студии
     /// </summary>
-    [Required(ErrorMessageResourceName = "Required")]
+    [Required]
     public Guid IsnNode { get; init; }
 
     /// <summary>
     /// Наименование
     /// </summary>
-    [Required(ErrorMessageResourceName = "Required")]
-    [MaxLength(100, ErrorMessageResourceName = "MaxLength")]
+    [Required]
     public string Name { get; init; }
 
     /// <summary>
     /// Местоположение
     /// </summary>
-    [Required(ErrorMessageResourceName = "Required")]
-    [MaxLength(100, ErrorMessageResourceName = "MaxLength")]
+    [Required]
     public string Location { get; init; }
 }
