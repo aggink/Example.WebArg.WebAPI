@@ -1,6 +1,8 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 using WebArg.Logic.Extensions;
+using WebArg.Storage.Database;
 using WebArg.Web.Features.Interfaces;
 using WebArg.Web.Features.Managers;
 using WebArg.Web.Features.Mappers;
@@ -16,8 +18,11 @@ public static class ServiceCollectionExtensions
     /// Регистрация сервисов Web
     /// </summary>
     /// <param name="services">Коллекция дескрипторов служб</param>
-    public static void AddFeaturesServices(this IServiceCollection services)
+    /// <param name="configuration">Набор свойств конфигурации</param>
+    public static void AddFeaturesServices(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddDatabase(configuration);
+
         services.AddTransient<IStudioManager, StudioManager>();
         services.AddTransient<IPersonManager, PersonManager>();
         services.AddTransient<IMasterManager, MasterManager>();
@@ -58,5 +63,19 @@ public static class ServiceCollectionExtensions
                 enableAnnotationsForPolymorphism: true
             );
         });
+    }
+
+    /// <summary>
+    /// Регистрация контекст базы данных
+    /// </summary>
+    /// <param name="services">Коллекция дескрипторов служб</param>
+    /// <param name="configuration">Набор свойств конфигурации</param>
+    public static void AddDatabase(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<DataContext>(options =>
+        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), o =>
+        {
+            o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+        }));
     }
 }

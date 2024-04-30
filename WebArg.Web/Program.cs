@@ -21,7 +21,7 @@ builder.Services
     .AddNewtonsoftJson();
 
 builder.Services.AddSwaggerSetup();
-builder.Services.AddFeaturesServices();
+builder.Services.AddFeaturesServices(builder.Configuration);
 
 var app = builder.Build();
 
