@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Serilog;
 using WebArg.Storage.Database;
 using WebArg.Web.Extensions;
 using WebArg.Web.Middlewares;
@@ -12,6 +13,9 @@ builder.Services.AddDbContext<DataContext>(options =>
         o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
     }));
 
+builder.Host.UseSerilog((context, Configuration) =>
+   Configuration.ReadFrom.Configuration(context.Configuration));
+
 builder.Services
     .AddControllers()
     .AddNewtonsoftJson();
@@ -22,7 +26,10 @@ builder.Services.AddFeaturesServices();
 var app = builder.Build();
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
+
+app.UseSerilogRequestLogging();
 
 if (app.Environment.IsDevelopment())
 {
