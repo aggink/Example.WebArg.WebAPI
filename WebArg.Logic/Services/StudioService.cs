@@ -1,56 +1,60 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebArg.Logic.Exceptions;
 using WebArg.Logic.Interfaces.Services;
 using WebArg.Storage.Database;
 using WebArg.Storage.Models;
 
-namespace WebArg.Logic.Services
+namespace WebArg.Logic.Services;
+
+/// <summary>
+/// Сервис для <see cref="Studio"/>
+/// </summary>
+public sealed class StudioService : IStudioService
 {
-    public sealed class StudioService : IStudioService
+    public async Task SetBindWithMasterAsync(DataContext dataContext, Guid isnStudio, Guid isnMaster)
     {
-        public void SetBindWithMaster(DataContext dataContext, Guid isnStudio, Guid isnMaster)
+        var studio = await dataContext.Studios.FirstOrDefaultAsync(x => x.IsnNode == isnStudio)
+            ?? throw new LogicException($"Студии с таким идентификатором {isnStudio} не существует");
+
+        var master = await dataContext.Masters.FirstOrDefaultAsync(x => x.IsnNode == isnMaster)
+            ?? throw new LogicException($"Мастера с таким идентификатором {isnMaster} не существует");
+
+        var studioMaster = new StudioMaster
         {
-            var studio = dataContext.Studios.FirstOrDefault(x => x.IsnNode == isnStudio)
-                ?? throw new Exception($"Студии с таким идентификатором {isnStudio} не существует");
+            IsnStudio = isnStudio,
+            IsnMaster = isnMaster
+        };
 
-            var master = dataContext.Masters.FirstOrDefault(x => x.IsnNode == isnMaster)
-                ?? throw new Exception($"Мастера с таким идентификатором {isnMaster} не существует");
+        dataContext.StudiosMasters.Add(studioMaster);
+    }
 
-            var studioMaster = new StudioMaster
-            {
-                IsnStudio = isnStudio,
-                IsnMaster = isnMaster
-            };
+    public async Task DeleteBindWithMasterAsync(DataContext dataContext, Guid isnStudio, Guid isnMaster)
+    {
+        var studioMaster = await dataContext.StudiosMasters
+            .FirstOrDefaultAsync(x => x.IsnStudio == isnStudio && x.IsnMaster == isnMaster)
+                ?? throw new LogicException($"Связи студии {isnStudio} с мастером не существует {isnMaster}");
 
-            dataContext.StudiosMasters.Add(studioMaster);
-        }
+        dataContext.StudiosMasters.Remove(studioMaster);
+    }
 
-        public void DeleteBindWithMaster(DataContext dataContext, Guid isnStudio, Guid isnMaster)
-        {
-            var studioMaster = dataContext.StudiosMasters.FirstOrDefault(x => x.IsnStudio == isnStudio && x.IsnMaster == isnMaster)
-                ?? throw new Exception($"Связи студии {isnStudio} с мастером не существует {isnMaster}");
+    public IQueryable<Studio> GetStudioQueryable(DataContext dataContext)
+    {
+        var centerQuery = dataContext.Studios
+            .AsNoTracking();
 
-            dataContext.StudiosMasters.Remove(studioMaster);
-        }
+        return centerQuery;
+    }
 
-        public IQueryable<Studio> GetStudioQueryable(DataContext dataContext)
-        {
-            var centerQuery = dataContext.Studios
-                .AsNoTracking();
+    public async Task<Studio> GetInfoStudioAsync(DataContext dataContext, Guid isnStudio)
+    {
+        var studio = await dataContext.Studios
+            .AsNoTracking()
+            .Include(x => x.Persons)
+            .Include(x => x.StudioMasters)
+                .ThenInclude(x => x.Master)
+            .FirstOrDefaultAsync(x => x.IsnNode == isnStudio)
+                ?? throw new LogicException($"Студии с таким идентификатором {isnStudio} не существует");
 
-            return centerQuery;
-        }
-
-        public Studio GetInfoStudio(DataContext dataContext, Guid isnStudio)
-        {
-            var studio = dataContext.Studios
-                .AsNoTracking()
-                .Include(x => x.Persons)
-                .Include(x => x.StudioMasters)
-                    .ThenInclude(x => x.Master)
-                .FirstOrDefault(x => x.IsnNode == isnStudio)
-                    ?? throw new Exception($"Студии с таким идентификатором {isnStudio} не существует");
-
-            return studio;
-        }
+        return studio;
     }
 }

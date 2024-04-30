@@ -87,7 +87,7 @@ namespace WebArg.Web.Features.Managers
 
         public async Task<InfoPersonDto> GetInfoPersonAsync(Guid isnPerson)
         {
-            var person = _personService.GetInfoРerson(_dataContext, isnPerson);
+            var person = _personService.GetInfoPerson(_dataContext, isnPerson);
 
             return new InfoPersonDto
             {

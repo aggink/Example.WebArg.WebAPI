@@ -2,19 +2,21 @@
 using Microsoft.EntityFrameworkCore.Design;
 using WebArg.Storage.Database;
 
-namespace WebArg.Storage.MS_SQL
+namespace WebArg.Storage.MS_SQL;
+
+/// <summary>
+/// Фабрика для создания производных <see cref="DataContext"/> экземпляров
+/// </summary>
+public class SqlServerContextFactory : IDesignTimeDbContextFactory<DataContext>
 {
-    public class SqlServerContextFactory : IDesignTimeDbContextFactory<DataContext>
+    private const string DbConnectionString = "Server=localhost,1433;Database=StudioDb;User ID=sa;Password=<YourStrong@Passw0rd>;MultipleActiveResultSets=true;TrustServerCertificate=True";
+
+    public DataContext CreateDbContext(string[] args)
     {
-        private const string DbConnectionString = "Server=localhost,1433;Database=StudioDb;User ID=sa;Password=<YourStrong@Passw0rd>;MultipleActiveResultSets=true;TrustServerCertificate=True";
+        var optionBuilder = new DbContextOptionsBuilder<DataContext>();
 
-        public DataContext CreateDbContext(string[] args)
-        {
-            var optionBuilder = new DbContextOptionsBuilder<DataContext>();
+        optionBuilder.UseSqlServer(DbConnectionString, b => b.MigrationsAssembly(typeof(SqlServerContextFactory).Namespace));
 
-            optionBuilder.UseSqlServer(DbConnectionString, b => b.MigrationsAssembly(typeof(SqlServerContextFactory).Namespace));
-
-            return new DataContext(optionBuilder.Options);
-        }
+        return new DataContext(optionBuilder.Options);
     }
 }
