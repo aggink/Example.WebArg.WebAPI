@@ -92,6 +92,7 @@ public sealed class PersonManager : IPersonManager
 
     public async Task<InfoPersonDto> GetInfoPersonAsync(Guid isnPerson, CancellationToken cancellationToken)
     {
+        // todo: необходимо выделить в PagedList, чтоб не тащить все из БД
         var person = await _personService.GetInfoPersonAsync(_dataContext, isnPerson, cancellationToken);
 
         return new InfoPersonDto

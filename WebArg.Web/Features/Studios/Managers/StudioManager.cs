@@ -85,6 +85,7 @@ public sealed class StudioManager : IStudioManager
 
     public async Task<InfoStudioDto> GetInfoStudioAsync(Guid isnStudio, CancellationToken cancellationToken)
     {
+        // todo: необходимо выделить в PagedList, чтоб не тащить все из БД
         var studio = await _studioService.GetInfoStudioAsync(_dataContext, isnStudio, cancellationToken);
 
         return new InfoStudioDto

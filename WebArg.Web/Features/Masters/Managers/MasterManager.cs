@@ -101,6 +101,7 @@ public sealed class MasterManager : IMasterManager
 
     public async Task<InfoMasterDto> GetInfoMasterAsync(Guid isnMaster, CancellationToken cancellationToken)
     {
+        // todo: необходимо выделить в PagedList, чтоб не тащить все из БД
         var model = await _masterService.GetInfoMasterAsync(_dataContext, isnMaster, cancellationToken);
 
         return new InfoMasterDto
