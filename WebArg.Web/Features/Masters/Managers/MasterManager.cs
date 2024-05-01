@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
+using Marketplace.Web.Common.PagedList.Helpers;
 using WebArg.Logic.Interfaces.Repositories;
 using WebArg.Logic.Interfaces.Services;
 using WebArg.Storage.Database;
 using WebArg.Storage.Models;
+using WebArg.Web.Common.PagedList.Helpers;
 using WebArg.Web.Features.Masters.DtoModels;
 using WebArg.Web.Features.Masters.Managers.Interfaces;
+using WebArg.Web.Features.Masters.Queries;
 using WebArg.Web.Features.Persons.DtoModels;
 using WebArg.Web.Features.Studios.DtoModels;
+using X.PagedList;
 
 namespace WebArg.Web.Features.Masters.Managers;
 
@@ -79,8 +83,10 @@ public sealed class MasterManager : IMasterManager
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<MasterDto[]> GetListMasterAsync()
+    public async Task<IPagedList<MasterDto>> GetListMasterAsync(GetListMasterQuery query)
     {
+        var actionState = ActionStateHelper.GetActionState(query);
+
         var masters = _masterService
             .GetMasterQueryable(_dataContext)
             .Select(master => new MasterDto
@@ -88,10 +94,9 @@ public sealed class MasterManager : IMasterManager
                 IsnNode = master.IsnNode,
                 Name = master.Name,
                 Qualification = master.Qualification,
-            })
-            .ToArray();
+            });
 
-        return masters;
+        return PagedListHelper.GetPagedList(masters, actionState);
     }
 
     public async Task<InfoMasterDto> GetInfoMasterAsync(Guid isnMaster, CancellationToken cancellationToken)

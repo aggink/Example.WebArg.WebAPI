@@ -1,4 +1,5 @@
-﻿using WebArg.Storage.Database;
+﻿using WebArg.Logic.DtoModels;
+using WebArg.Storage.Database;
 using WebArg.Storage.Models;
 
 namespace WebArg.Logic.Interfaces.Services;
@@ -12,9 +13,9 @@ public interface IPersonService
     /// Список клиентов
     /// </summary>
     /// <param name="dataContext">Контекст базы данных</param>
-    /// <param name="isnStudio">Идентификатор студии</param>
+    /// <param name="filter">Фильтры</param>
     /// <returns>Получить список клиентов</returns>
-    IQueryable<Person> GetPersonQueryable(DataContext dataContext, Guid? isnStudio);
+    IQueryable<Person> GetPersonQueryable(DataContext dataContext, PersonFilter filter);
 
     /// <summary>
     /// Получить информацию о клиенте

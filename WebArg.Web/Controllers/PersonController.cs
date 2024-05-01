@@ -3,6 +3,7 @@ using WebArg.Web.DataAnnotations;
 using WebArg.Web.Features.Persons.DtoModels;
 using WebArg.Web.Features.Persons.Managers.Interfaces;
 using WebArg.Web.Features.Persons.Queries;
+using X.PagedList;
 
 namespace WebArg.Web.Controllers;
 
@@ -24,11 +25,12 @@ public class PersonController : Controller
     /// <summary>
     /// Получить список клиентов
     /// </summary>
+    /// <param name="query">Dto параметр</param>
     /// <returns>Список клиентов</returns>
     [HttpGet(nameof(GetListPerson), Name = nameof(GetListPerson))]
-    public async Task<ActionResult<PersonDto[]>> GetListPerson()
+    public async Task<ActionResult<IPagedList<PersonDto>>> GetListPerson(GetListPersonQuery query)
     {
-        var list = await _personManager.GetListPersonAsync(null);
+        var list = await _personManager.GetListPersonAsync(query);
         return Ok(list);
     }
 

@@ -10,7 +10,7 @@
   - [SetBindWithPersonAsync(dataContext,isnMaster,isnPerson,cancellationToken)](#M-WebArg-Logic-Interfaces-Services-IMasterService-SetBindWithPersonAsync-WebArg-Storage-Database-DataContext,System-Guid,System-Guid,System-Threading-CancellationToken- 'WebArg.Logic.Interfaces.Services.IMasterService.SetBindWithPersonAsync(WebArg.Storage.Database.DataContext,System.Guid,System.Guid,System.Threading.CancellationToken)')
 - [IPersonService](#T-WebArg-Logic-Interfaces-Services-IPersonService 'WebArg.Logic.Interfaces.Services.IPersonService')
   - [GetInfoPersonAsync(dataContext,isnPerson,cancellationToken)](#M-WebArg-Logic-Interfaces-Services-IPersonService-GetInfoPersonAsync-WebArg-Storage-Database-DataContext,System-Guid,System-Threading-CancellationToken- 'WebArg.Logic.Interfaces.Services.IPersonService.GetInfoPersonAsync(WebArg.Storage.Database.DataContext,System.Guid,System.Threading.CancellationToken)')
-  - [GetPersonQueryable(dataContext,isnStudio)](#M-WebArg-Logic-Interfaces-Services-IPersonService-GetPersonQueryable-WebArg-Storage-Database-DataContext,System-Nullable{System-Guid}- 'WebArg.Logic.Interfaces.Services.IPersonService.GetPersonQueryable(WebArg.Storage.Database.DataContext,System.Nullable{System.Guid})')
+  - [GetPersonQueryable(dataContext,filter)](#M-WebArg-Logic-Interfaces-Services-IPersonService-GetPersonQueryable-WebArg-Storage-Database-DataContext,WebArg-Logic-DtoModels-PersonFilter- 'WebArg.Logic.Interfaces.Services.IPersonService.GetPersonQueryable(WebArg.Storage.Database.DataContext,WebArg.Logic.DtoModels.PersonFilter)')
 - [IRepository\`1](#T-WebArg-Logic-Interfaces-Repositories-IRepository`1 'WebArg.Logic.Interfaces.Repositories.IRepository`1')
   - [Create(dataContext,model)](#M-WebArg-Logic-Interfaces-Repositories-IRepository`1-Create-WebArg-Storage-Database-DataContext,`0- 'WebArg.Logic.Interfaces.Repositories.IRepository`1.Create(WebArg.Storage.Database.DataContext,`0)')
   - [DeleteAsync(dataContext,isnNode,cancellationToken)](#M-WebArg-Logic-Interfaces-Repositories-IRepository`1-DeleteAsync-WebArg-Storage-Database-DataContext,System-Guid,System-Threading-CancellationToken- 'WebArg.Logic.Interfaces.Repositories.IRepository`1.DeleteAsync(WebArg.Storage.Database.DataContext,System.Guid,System.Threading.CancellationToken)')
@@ -24,6 +24,8 @@
 - [LogicException](#T-WebArg-Logic-Exceptions-LogicException 'WebArg.Logic.Exceptions.LogicException')
 - [MasterRepository](#T-WebArg-Logic-Repositories-MasterRepository 'WebArg.Logic.Repositories.MasterRepository')
 - [MasterService](#T-WebArg-Logic-Services-MasterService 'WebArg.Logic.Services.MasterService')
+- [PersonFilter](#T-WebArg-Logic-DtoModels-PersonFilter 'WebArg.Logic.DtoModels.PersonFilter')
+  - [IsnStudio](#P-WebArg-Logic-DtoModels-PersonFilter-IsnStudio 'WebArg.Logic.DtoModels.PersonFilter.IsnStudio')
 - [PersonRepository](#T-WebArg-Logic-Repositories-PersonRepository 'WebArg.Logic.Repositories.PersonRepository')
 - [PersonService](#T-WebArg-Logic-Services-PersonService 'WebArg.Logic.Services.PersonService')
 - [ServiceCollectionExtensions](#T-WebArg-Logic-Extensions-ServiceCollectionExtensions 'WebArg.Logic.Extensions.ServiceCollectionExtensions')
@@ -140,8 +142,8 @@ WebArg.Logic.Interfaces.Services
 | isnPerson | [System.Guid](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Guid 'System.Guid') | Идентификатор клиента |
 | cancellationToken | [System.Threading.CancellationToken](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Threading.CancellationToken 'System.Threading.CancellationToken') | Токен отмены |
 
-<a name='M-WebArg-Logic-Interfaces-Services-IPersonService-GetPersonQueryable-WebArg-Storage-Database-DataContext,System-Nullable{System-Guid}-'></a>
-### GetPersonQueryable(dataContext,isnStudio) `method`
+<a name='M-WebArg-Logic-Interfaces-Services-IPersonService-GetPersonQueryable-WebArg-Storage-Database-DataContext,WebArg-Logic-DtoModels-PersonFilter-'></a>
+### GetPersonQueryable(dataContext,filter) `method`
 
 ##### Summary
 
@@ -156,7 +158,7 @@ WebArg.Logic.Interfaces.Services
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | dataContext | [WebArg.Storage.Database.DataContext](#T-WebArg-Storage-Database-DataContext 'WebArg.Storage.Database.DataContext') | Контекст базы данных |
-| isnStudio | [System.Nullable{System.Guid}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{System.Guid}') | Идентификатор студии |
+| filter | [WebArg.Logic.DtoModels.PersonFilter](#T-WebArg-Logic-DtoModels-PersonFilter 'WebArg.Logic.DtoModels.PersonFilter') | Фильтры |
 
 <a name='T-WebArg-Logic-Interfaces-Repositories-IRepository`1'></a>
 ## IRepository\`1 `type`
@@ -361,6 +363,24 @@ WebArg.Logic.Services
 ##### Summary
 
 Сервис для [Master](#T-WebArg-Storage-Models-Master 'WebArg.Storage.Models.Master')
+
+<a name='T-WebArg-Logic-DtoModels-PersonFilter'></a>
+## PersonFilter `type`
+
+##### Namespace
+
+WebArg.Logic.DtoModels
+
+##### Summary
+
+Фильтры для [Person](#T-WebArg-Storage-Models-Person 'WebArg.Storage.Models.Person')
+
+<a name='P-WebArg-Logic-DtoModels-PersonFilter-IsnStudio'></a>
+### IsnStudio `property`
+
+##### Summary
+
+Идентификатор студии
 
 <a name='T-WebArg-Logic-Repositories-PersonRepository'></a>
 ## PersonRepository `type`

@@ -3,6 +3,7 @@ using WebArg.Web.DataAnnotations;
 using WebArg.Web.Features.Masters.DtoModels;
 using WebArg.Web.Features.Masters.Managers.Interfaces;
 using WebArg.Web.Features.Masters.Queries;
+using X.PagedList;
 
 namespace WebArg.Web.Controllers;
 
@@ -24,11 +25,12 @@ public class MasterController : Controller
     /// <summary>
     /// Получить список мастеров
     /// </summary>
+    /// <param name="query">Dto параметр</param>
     /// <returns>Список мастеров</returns>
     [HttpGet(nameof(GetListMaster), Name = nameof(GetListMaster))]
-    public async Task<ActionResult<MasterDto[]>> GetListMaster()
+    public async Task<ActionResult<IPagedList<MasterDto>>> GetListMaster(GetListMasterQuery query)
     {
-        var list = await _masterManager.GetListMasterAsync();
+        var list = await _masterManager.GetListMasterAsync(query);
         return Ok(list);
     }
 

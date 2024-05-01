@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
+using Marketplace.Web.Common.PagedList.Helpers;
 using WebArg.Logic.Interfaces.Repositories;
 using WebArg.Logic.Interfaces.Services;
 using WebArg.Storage.Database;
 using WebArg.Storage.Models;
+using WebArg.Web.Common.PagedList.Helpers;
 using WebArg.Web.Features.Masters.DtoModels;
 using WebArg.Web.Features.Persons.DtoModels;
 using WebArg.Web.Features.Studios.DtoModels;
 using WebArg.Web.Features.Studios.Managers.Interfaces;
+using WebArg.Web.Features.Studios.Queries;
+using X.PagedList;
 
 namespace WebArg.Web.Features.Studios.Managers;
 
@@ -108,8 +112,9 @@ public sealed class StudioManager : IStudioManager
         };
     }
 
-    public async Task<StudioDto[]> GetListStudioAsync()
+    public async Task<IPagedList<StudioDto>> GetListStudioAsync(GetListStudiosQuery query)
     {
+        var actionState = ActionStateHelper.GetActionState(query);
 
         var studios = _studioService
             .GetStudioQueryable(_dataContext)
@@ -118,9 +123,8 @@ public sealed class StudioManager : IStudioManager
                 IsnNode = x.IsnNode,
                 Name = x.Name,
                 Location = x.Location,
-            })
-            .ToArray();
+            });
 
-        return studios;
+        return PagedListHelper.GetPagedList(studios, actionState);
     }
 }

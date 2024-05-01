@@ -42,12 +42,16 @@
   - [IsnPerson](#P-WebArg-Web-Features-Persons-Queries-GetInfoPersonQuery-IsnPerson 'WebArg.Web.Features.Persons.Queries.GetInfoPersonQuery.IsnPerson')
 - [GetInfoStudioQuery](#T-WebArg-Web-Features-Studios-Queries-GetInfoStudioQuery 'WebArg.Web.Features.Studios.Queries.GetInfoStudioQuery')
   - [IsnStudio](#P-WebArg-Web-Features-Studios-Queries-GetInfoStudioQuery-IsnStudio 'WebArg.Web.Features.Studios.Queries.GetInfoStudioQuery.IsnStudio')
+- [GetListMasterQuery](#T-WebArg-Web-Features-Masters-Queries-GetListMasterQuery 'WebArg.Web.Features.Masters.Queries.GetListMasterQuery')
+- [GetListPersonQuery](#T-WebArg-Web-Features-Persons-Queries-GetListPersonQuery 'WebArg.Web.Features.Persons.Queries.GetListPersonQuery')
+  - [IsnStudio](#P-WebArg-Web-Features-Persons-Queries-GetListPersonQuery-IsnStudio 'WebArg.Web.Features.Persons.Queries.GetListPersonQuery.IsnStudio')
+- [GetListStudiosQuery](#T-WebArg-Web-Features-Studios-Queries-GetListStudiosQuery 'WebArg.Web.Features.Studios.Queries.GetListStudiosQuery')
 - [IMasterManager](#T-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager 'WebArg.Web.Features.Masters.Managers.Interfaces.IMasterManager')
   - [CreateMasterAsync(source,cancellationToken)](#M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-CreateMasterAsync-WebArg-Web-Features-Masters-DtoModels-EditMasterDto,System-Threading-CancellationToken- 'WebArg.Web.Features.Masters.Managers.Interfaces.IMasterManager.CreateMasterAsync(WebArg.Web.Features.Masters.DtoModels.EditMasterDto,System.Threading.CancellationToken)')
   - [DeleteBindWithPersonAsync(model,cancellationToken)](#M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-DeleteBindWithPersonAsync-WebArg-Web-Features-Masters-DtoModels-SetBindWithPersonDto,System-Threading-CancellationToken- 'WebArg.Web.Features.Masters.Managers.Interfaces.IMasterManager.DeleteBindWithPersonAsync(WebArg.Web.Features.Masters.DtoModels.SetBindWithPersonDto,System.Threading.CancellationToken)')
   - [DeleteMasterAsync(isnMaster,cancellationToken)](#M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-DeleteMasterAsync-System-Guid,System-Threading-CancellationToken- 'WebArg.Web.Features.Masters.Managers.Interfaces.IMasterManager.DeleteMasterAsync(System.Guid,System.Threading.CancellationToken)')
   - [GetInfoMasterAsync(isnMaster,cancellationToken)](#M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-GetInfoMasterAsync-System-Guid,System-Threading-CancellationToken- 'WebArg.Web.Features.Masters.Managers.Interfaces.IMasterManager.GetInfoMasterAsync(System.Guid,System.Threading.CancellationToken)')
-  - [GetListMasterAsync()](#M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-GetListMasterAsync 'WebArg.Web.Features.Masters.Managers.Interfaces.IMasterManager.GetListMasterAsync')
+  - [GetListMasterAsync(query)](#M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-GetListMasterAsync-WebArg-Web-Features-Masters-Queries-GetListMasterQuery- 'WebArg.Web.Features.Masters.Managers.Interfaces.IMasterManager.GetListMasterAsync(WebArg.Web.Features.Masters.Queries.GetListMasterQuery)')
   - [GetMasterAsync(isnMaster,cancellationToken)](#M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-GetMasterAsync-System-Guid,System-Threading-CancellationToken- 'WebArg.Web.Features.Masters.Managers.Interfaces.IMasterManager.GetMasterAsync(System.Guid,System.Threading.CancellationToken)')
   - [SetBindWithPersonAsync(model,cancellationToken)](#M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-SetBindWithPersonAsync-WebArg-Web-Features-Masters-DtoModels-SetBindWithPersonDto,System-Threading-CancellationToken- 'WebArg.Web.Features.Masters.Managers.Interfaces.IMasterManager.SetBindWithPersonAsync(WebArg.Web.Features.Masters.DtoModels.SetBindWithPersonDto,System.Threading.CancellationToken)')
   - [UpdateMasterAsync(source,cancellationToken)](#M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-UpdateMasterAsync-WebArg-Web-Features-Masters-DtoModels-EditMasterDto,System-Threading-CancellationToken- 'WebArg.Web.Features.Masters.Managers.Interfaces.IMasterManager.UpdateMasterAsync(WebArg.Web.Features.Masters.DtoModels.EditMasterDto,System.Threading.CancellationToken)')
@@ -55,7 +59,7 @@
   - [CreatePersonAsync(source,cancellationToken)](#M-WebArg-Web-Features-Persons-Managers-Interfaces-IPersonManager-CreatePersonAsync-WebArg-Web-Features-Persons-DtoModels-EditPersonDto,System-Threading-CancellationToken- 'WebArg.Web.Features.Persons.Managers.Interfaces.IPersonManager.CreatePersonAsync(WebArg.Web.Features.Persons.DtoModels.EditPersonDto,System.Threading.CancellationToken)')
   - [DeletePersonAsync(isnPerson,cancellationToken)](#M-WebArg-Web-Features-Persons-Managers-Interfaces-IPersonManager-DeletePersonAsync-System-Guid,System-Threading-CancellationToken- 'WebArg.Web.Features.Persons.Managers.Interfaces.IPersonManager.DeletePersonAsync(System.Guid,System.Threading.CancellationToken)')
   - [GetInfoPersonAsync(isnPerson,cancellationToken)](#M-WebArg-Web-Features-Persons-Managers-Interfaces-IPersonManager-GetInfoPersonAsync-System-Guid,System-Threading-CancellationToken- 'WebArg.Web.Features.Persons.Managers.Interfaces.IPersonManager.GetInfoPersonAsync(System.Guid,System.Threading.CancellationToken)')
-  - [GetListPersonAsync(isnStudio)](#M-WebArg-Web-Features-Persons-Managers-Interfaces-IPersonManager-GetListPersonAsync-System-Nullable{System-Guid}- 'WebArg.Web.Features.Persons.Managers.Interfaces.IPersonManager.GetListPersonAsync(System.Nullable{System.Guid})')
+  - [GetListPersonAsync(query)](#M-WebArg-Web-Features-Persons-Managers-Interfaces-IPersonManager-GetListPersonAsync-WebArg-Web-Features-Persons-Queries-GetListPersonQuery- 'WebArg.Web.Features.Persons.Managers.Interfaces.IPersonManager.GetListPersonAsync(WebArg.Web.Features.Persons.Queries.GetListPersonQuery)')
   - [GetPersonAsync(isnPerson,cancellationToken)](#M-WebArg-Web-Features-Persons-Managers-Interfaces-IPersonManager-GetPersonAsync-System-Guid,System-Threading-CancellationToken- 'WebArg.Web.Features.Persons.Managers.Interfaces.IPersonManager.GetPersonAsync(System.Guid,System.Threading.CancellationToken)')
   - [UpdatePersonAsync(source,cancellationToken)](#M-WebArg-Web-Features-Persons-Managers-Interfaces-IPersonManager-UpdatePersonAsync-WebArg-Web-Features-Persons-DtoModels-EditPersonDto,System-Threading-CancellationToken- 'WebArg.Web.Features.Persons.Managers.Interfaces.IPersonManager.UpdatePersonAsync(WebArg.Web.Features.Persons.DtoModels.EditPersonDto,System.Threading.CancellationToken)')
 - [IStudioManager](#T-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager 'WebArg.Web.Features.Studios.Managers.Interfaces.IStudioManager')
@@ -63,7 +67,7 @@
   - [DeleteBindWithMasterAsync(model,cancellationToken)](#M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-DeleteBindWithMasterAsync-WebArg-Web-Features-Studios-DtoModels-SetBindWithMasterDto,System-Threading-CancellationToken- 'WebArg.Web.Features.Studios.Managers.Interfaces.IStudioManager.DeleteBindWithMasterAsync(WebArg.Web.Features.Studios.DtoModels.SetBindWithMasterDto,System.Threading.CancellationToken)')
   - [DeleteStudioAsync(isnStudio,cancellationToken)](#M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-DeleteStudioAsync-System-Guid,System-Threading-CancellationToken- 'WebArg.Web.Features.Studios.Managers.Interfaces.IStudioManager.DeleteStudioAsync(System.Guid,System.Threading.CancellationToken)')
   - [GetInfoStudioAsync(isnStudio,cancellationToken)](#M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-GetInfoStudioAsync-System-Guid,System-Threading-CancellationToken- 'WebArg.Web.Features.Studios.Managers.Interfaces.IStudioManager.GetInfoStudioAsync(System.Guid,System.Threading.CancellationToken)')
-  - [GetListStudioAsync()](#M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-GetListStudioAsync 'WebArg.Web.Features.Studios.Managers.Interfaces.IStudioManager.GetListStudioAsync')
+  - [GetListStudioAsync(query)](#M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-GetListStudioAsync-WebArg-Web-Features-Studios-Queries-GetListStudiosQuery- 'WebArg.Web.Features.Studios.Managers.Interfaces.IStudioManager.GetListStudioAsync(WebArg.Web.Features.Studios.Queries.GetListStudiosQuery)')
   - [GetStudioAsync(isnStudio,cancellationToken)](#M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-GetStudioAsync-System-Guid,System-Threading-CancellationToken- 'WebArg.Web.Features.Studios.Managers.Interfaces.IStudioManager.GetStudioAsync(System.Guid,System.Threading.CancellationToken)')
   - [SetBindWithMasterAsync(model,cancellationToken)](#M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-SetBindWithMasterAsync-WebArg-Web-Features-Studios-DtoModels-SetBindWithMasterDto,System-Threading-CancellationToken- 'WebArg.Web.Features.Studios.Managers.Interfaces.IStudioManager.SetBindWithMasterAsync(WebArg.Web.Features.Studios.DtoModels.SetBindWithMasterDto,System.Threading.CancellationToken)')
   - [UpdateStudioAsync(source,cancellationToken)](#M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-UpdateStudioAsync-WebArg-Web-Features-Studios-DtoModels-EditStudioDto,System-Threading-CancellationToken- 'WebArg.Web.Features.Studios.Managers.Interfaces.IStudioManager.UpdateStudioAsync(WebArg.Web.Features.Studios.DtoModels.EditStudioDto,System.Threading.CancellationToken)')
@@ -92,7 +96,7 @@
   - [DeleteMaster(query,cancellationToken)](#M-WebArg-Web-Controllers-MasterController-DeleteMaster-WebArg-Web-Features-Masters-Queries-DeleteMasterQuery,System-Threading-CancellationToken- 'WebArg.Web.Controllers.MasterController.DeleteMaster(WebArg.Web.Features.Masters.Queries.DeleteMasterQuery,System.Threading.CancellationToken)')
   - [GetEditMaster(query,cancellationToken)](#M-WebArg-Web-Controllers-MasterController-GetEditMaster-WebArg-Web-Features-Masters-Queries-GetEditMasterQuery,System-Threading-CancellationToken- 'WebArg.Web.Controllers.MasterController.GetEditMaster(WebArg.Web.Features.Masters.Queries.GetEditMasterQuery,System.Threading.CancellationToken)')
   - [GetInfoMaster(query,cancellationToken)](#M-WebArg-Web-Controllers-MasterController-GetInfoMaster-WebArg-Web-Features-Masters-Queries-GetInfoMasterQuery,System-Threading-CancellationToken- 'WebArg.Web.Controllers.MasterController.GetInfoMaster(WebArg.Web.Features.Masters.Queries.GetInfoMasterQuery,System.Threading.CancellationToken)')
-  - [GetListMaster()](#M-WebArg-Web-Controllers-MasterController-GetListMaster 'WebArg.Web.Controllers.MasterController.GetListMaster')
+  - [GetListMaster(query)](#M-WebArg-Web-Controllers-MasterController-GetListMaster-WebArg-Web-Features-Masters-Queries-GetListMasterQuery- 'WebArg.Web.Controllers.MasterController.GetListMaster(WebArg.Web.Features.Masters.Queries.GetListMasterQuery)')
   - [SetBindWithPerson(model,cancellationToken)](#M-WebArg-Web-Controllers-MasterController-SetBindWithPerson-WebArg-Web-Features-Masters-DtoModels-SetBindWithPersonDto,System-Threading-CancellationToken- 'WebArg.Web.Controllers.MasterController.SetBindWithPerson(WebArg.Web.Features.Masters.DtoModels.SetBindWithPersonDto,System.Threading.CancellationToken)')
   - [UpdateMaster(model,cancellationToken)](#M-WebArg-Web-Controllers-MasterController-UpdateMaster-WebArg-Web-Features-Masters-DtoModels-EditMasterDto,System-Threading-CancellationToken- 'WebArg.Web.Controllers.MasterController.UpdateMaster(WebArg.Web.Features.Masters.DtoModels.EditMasterDto,System.Threading.CancellationToken)')
 - [MasterDto](#T-WebArg-Web-Features-Masters-DtoModels-MasterDto 'WebArg.Web.Features.Masters.DtoModels.MasterDto')
@@ -106,7 +110,7 @@
   - [DeleteРerson(query,cancellationToken)](#M-WebArg-Web-Controllers-PersonController-DeleteРerson-WebArg-Web-Features-Persons-Queries-DeleteРersonQuery,System-Threading-CancellationToken- 'WebArg.Web.Controllers.PersonController.DeleteРerson(WebArg.Web.Features.Persons.Queries.DeleteРersonQuery,System.Threading.CancellationToken)')
   - [GetEditPerson(query,cancellationToken)](#M-WebArg-Web-Controllers-PersonController-GetEditPerson-WebArg-Web-Features-Persons-Queries-GetEditPersonQuery,System-Threading-CancellationToken- 'WebArg.Web.Controllers.PersonController.GetEditPerson(WebArg.Web.Features.Persons.Queries.GetEditPersonQuery,System.Threading.CancellationToken)')
   - [GetInfoPerson(query,cancellationToken)](#M-WebArg-Web-Controllers-PersonController-GetInfoPerson-WebArg-Web-Features-Persons-Queries-GetInfoPersonQuery,System-Threading-CancellationToken- 'WebArg.Web.Controllers.PersonController.GetInfoPerson(WebArg.Web.Features.Persons.Queries.GetInfoPersonQuery,System.Threading.CancellationToken)')
-  - [GetListPerson()](#M-WebArg-Web-Controllers-PersonController-GetListPerson 'WebArg.Web.Controllers.PersonController.GetListPerson')
+  - [GetListPerson(query)](#M-WebArg-Web-Controllers-PersonController-GetListPerson-WebArg-Web-Features-Persons-Queries-GetListPersonQuery- 'WebArg.Web.Controllers.PersonController.GetListPerson(WebArg.Web.Features.Persons.Queries.GetListPersonQuery)')
   - [UpdatePerson(model,cancellationToken)](#M-WebArg-Web-Controllers-PersonController-UpdatePerson-WebArg-Web-Features-Persons-DtoModels-EditPersonDto,System-Threading-CancellationToken- 'WebArg.Web.Controllers.PersonController.UpdatePerson(WebArg.Web.Features.Persons.DtoModels.EditPersonDto,System.Threading.CancellationToken)')
 - [PersonDto](#T-WebArg-Web-Features-Persons-DtoModels-PersonDto 'WebArg.Web.Features.Persons.DtoModels.PersonDto')
   - [IsnNode](#P-WebArg-Web-Features-Persons-DtoModels-PersonDto-IsnNode 'WebArg.Web.Features.Persons.DtoModels.PersonDto.IsnNode')
@@ -133,7 +137,7 @@
   - [DeleteStudio(query,cancellationToken)](#M-WebArg-Web-Controllers-StudioController-DeleteStudio-WebArg-Web-Features-Studios-Queries-DeleteStudioQuery,System-Threading-CancellationToken- 'WebArg.Web.Controllers.StudioController.DeleteStudio(WebArg.Web.Features.Studios.Queries.DeleteStudioQuery,System.Threading.CancellationToken)')
   - [GetEditStudio(query,cancellationToken)](#M-WebArg-Web-Controllers-StudioController-GetEditStudio-WebArg-Web-Features-Studios-Queries-GetEditStudioQuery,System-Threading-CancellationToken- 'WebArg.Web.Controllers.StudioController.GetEditStudio(WebArg.Web.Features.Studios.Queries.GetEditStudioQuery,System.Threading.CancellationToken)')
   - [GetInfoStudio(query,cancellationToken)](#M-WebArg-Web-Controllers-StudioController-GetInfoStudio-WebArg-Web-Features-Studios-Queries-GetInfoStudioQuery,System-Threading-CancellationToken- 'WebArg.Web.Controllers.StudioController.GetInfoStudio(WebArg.Web.Features.Studios.Queries.GetInfoStudioQuery,System.Threading.CancellationToken)')
-  - [GetListStudios()](#M-WebArg-Web-Controllers-StudioController-GetListStudios 'WebArg.Web.Controllers.StudioController.GetListStudios')
+  - [GetListStudios(query)](#M-WebArg-Web-Controllers-StudioController-GetListStudios-WebArg-Web-Features-Studios-Queries-GetListStudiosQuery- 'WebArg.Web.Controllers.StudioController.GetListStudios(WebArg.Web.Features.Studios.Queries.GetListStudiosQuery)')
   - [SetBindWithMaster(model,cancellationToken)](#M-WebArg-Web-Controllers-StudioController-SetBindWithMaster-WebArg-Web-Features-Studios-DtoModels-SetBindWithMasterDto,System-Threading-CancellationToken- 'WebArg.Web.Controllers.StudioController.SetBindWithMaster(WebArg.Web.Features.Studios.DtoModels.SetBindWithMasterDto,System.Threading.CancellationToken)')
   - [UpdateStudio(model,cancellationToken)](#M-WebArg-Web-Controllers-StudioController-UpdateStudio-WebArg-Web-Features-Studios-DtoModels-EditStudioDto,System-Threading-CancellationToken- 'WebArg.Web.Controllers.StudioController.UpdateStudio(WebArg.Web.Features.Studios.DtoModels.EditStudioDto,System.Threading.CancellationToken)')
 - [StudioDto](#T-WebArg-Web-Features-Studios-DtoModels-StudioDto 'WebArg.Web.Features.Studios.DtoModels.StudioDto')
@@ -491,6 +495,46 @@ WebArg.Web.Features.Studios.Queries
 
 Идентификатор студии
 
+<a name='T-WebArg-Web-Features-Masters-Queries-GetListMasterQuery'></a>
+## GetListMasterQuery `type`
+
+##### Namespace
+
+WebArg.Web.Features.Masters.Queries
+
+##### Summary
+
+получить список мастеров
+
+<a name='T-WebArg-Web-Features-Persons-Queries-GetListPersonQuery'></a>
+## GetListPersonQuery `type`
+
+##### Namespace
+
+WebArg.Web.Features.Persons.Queries
+
+##### Summary
+
+Получить список клиентов
+
+<a name='P-WebArg-Web-Features-Persons-Queries-GetListPersonQuery-IsnStudio'></a>
+### IsnStudio `property`
+
+##### Summary
+
+Идентификатор студии
+
+<a name='T-WebArg-Web-Features-Studios-Queries-GetListStudiosQuery'></a>
+## GetListStudiosQuery `type`
+
+##### Namespace
+
+WebArg.Web.Features.Studios.Queries
+
+##### Summary
+
+Получить список студий
+
 <a name='T-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager'></a>
 ## IMasterManager `type`
 
@@ -500,7 +544,7 @@ WebArg.Web.Features.Masters.Managers.Interfaces
 
 ##### Summary
 
-Интерфейс обработчика [](#!-Master 'Master')
+Интерфейс обработчика [Master](#T-WebArg-Storage-Models-Master 'WebArg.Storage.Models.Master')
 
 <a name='M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-CreateMasterAsync-WebArg-Web-Features-Masters-DtoModels-EditMasterDto,System-Threading-CancellationToken-'></a>
 ### CreateMasterAsync(source,cancellationToken) `method`
@@ -574,8 +618,8 @@ WebArg.Web.Features.Masters.Managers.Interfaces
 | isnMaster | [System.Guid](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Guid 'System.Guid') | Идентификатор мастера |
 | cancellationToken | [System.Threading.CancellationToken](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Threading.CancellationToken 'System.Threading.CancellationToken') | Токен отмены |
 
-<a name='M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-GetListMasterAsync'></a>
-### GetListMasterAsync() `method`
+<a name='M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-GetListMasterAsync-WebArg-Web-Features-Masters-Queries-GetListMasterQuery-'></a>
+### GetListMasterAsync(query) `method`
 
 ##### Summary
 
@@ -587,7 +631,9 @@ WebArg.Web.Features.Masters.Managers.Interfaces
 
 ##### Parameters
 
-This method has no parameters.
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| query | [WebArg.Web.Features.Masters.Queries.GetListMasterQuery](#T-WebArg-Web-Features-Masters-Queries-GetListMasterQuery 'WebArg.Web.Features.Masters.Queries.GetListMasterQuery') | Параметры запроса |
 
 <a name='M-WebArg-Web-Features-Masters-Managers-Interfaces-IMasterManager-GetMasterAsync-System-Guid,System-Threading-CancellationToken-'></a>
 ### GetMasterAsync(isnMaster,cancellationToken) `method`
@@ -652,7 +698,7 @@ WebArg.Web.Features.Persons.Managers.Interfaces
 
 ##### Summary
 
-Интерфейс обработчика [](#!-Person 'Person')
+Интерфейс обработчика [Person](#T-WebArg-Storage-Models-Person 'WebArg.Storage.Models.Person')
 
 <a name='M-WebArg-Web-Features-Persons-Managers-Interfaces-IPersonManager-CreatePersonAsync-WebArg-Web-Features-Persons-DtoModels-EditPersonDto,System-Threading-CancellationToken-'></a>
 ### CreatePersonAsync(source,cancellationToken) `method`
@@ -708,8 +754,8 @@ WebArg.Web.Features.Persons.Managers.Interfaces
 | isnPerson | [System.Guid](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Guid 'System.Guid') | Идентификатор клиента |
 | cancellationToken | [System.Threading.CancellationToken](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Threading.CancellationToken 'System.Threading.CancellationToken') | Токен отмены |
 
-<a name='M-WebArg-Web-Features-Persons-Managers-Interfaces-IPersonManager-GetListPersonAsync-System-Nullable{System-Guid}-'></a>
-### GetListPersonAsync(isnStudio) `method`
+<a name='M-WebArg-Web-Features-Persons-Managers-Interfaces-IPersonManager-GetListPersonAsync-WebArg-Web-Features-Persons-Queries-GetListPersonQuery-'></a>
+### GetListPersonAsync(query) `method`
 
 ##### Summary
 
@@ -723,7 +769,7 @@ WebArg.Web.Features.Persons.Managers.Interfaces
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| isnStudio | [System.Nullable{System.Guid}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{System.Guid}') | Идентификатор студии |
+| query | [WebArg.Web.Features.Persons.Queries.GetListPersonQuery](#T-WebArg-Web-Features-Persons-Queries-GetListPersonQuery 'WebArg.Web.Features.Persons.Queries.GetListPersonQuery') | Параметры запроса |
 
 <a name='M-WebArg-Web-Features-Persons-Managers-Interfaces-IPersonManager-GetPersonAsync-System-Guid,System-Threading-CancellationToken-'></a>
 ### GetPersonAsync(isnPerson,cancellationToken) `method`
@@ -770,7 +816,7 @@ WebArg.Web.Features.Studios.Managers.Interfaces
 
 ##### Summary
 
-Интерфейс обработчика [](#!-Studio 'Studio')
+Интерфейс обработчика [Studio](#T-WebArg-Storage-Models-Studio 'WebArg.Storage.Models.Studio')
 
 <a name='M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-CreateStudioAsync-WebArg-Web-Features-Studios-DtoModels-EditStudioDto,System-Threading-CancellationToken-'></a>
 ### CreateStudioAsync(source,cancellationToken) `method`
@@ -844,8 +890,8 @@ WebArg.Web.Features.Studios.Managers.Interfaces
 | isnStudio | [System.Guid](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Guid 'System.Guid') | Идентификатор студии |
 | cancellationToken | [System.Threading.CancellationToken](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Threading.CancellationToken 'System.Threading.CancellationToken') | Токен отмены |
 
-<a name='M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-GetListStudioAsync'></a>
-### GetListStudioAsync() `method`
+<a name='M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-GetListStudioAsync-WebArg-Web-Features-Studios-Queries-GetListStudiosQuery-'></a>
+### GetListStudioAsync(query) `method`
 
 ##### Summary
 
@@ -857,7 +903,9 @@ WebArg.Web.Features.Studios.Managers.Interfaces
 
 ##### Parameters
 
-This method has no parameters.
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| query | [WebArg.Web.Features.Studios.Queries.GetListStudiosQuery](#T-WebArg-Web-Features-Studios-Queries-GetListStudiosQuery 'WebArg.Web.Features.Studios.Queries.GetListStudiosQuery') | Параметры запроса |
 
 <a name='M-WebArg-Web-Features-Studios-Managers-Interfaces-IStudioManager-GetStudioAsync-System-Guid,System-Threading-CancellationToken-'></a>
 ### GetStudioAsync(isnStudio,cancellationToken) `method`
@@ -1159,8 +1207,8 @@ WebArg.Web.Controllers
 | query | [WebArg.Web.Features.Masters.Queries.GetInfoMasterQuery](#T-WebArg-Web-Features-Masters-Queries-GetInfoMasterQuery 'WebArg.Web.Features.Masters.Queries.GetInfoMasterQuery') | Dto параметр |
 | cancellationToken | [System.Threading.CancellationToken](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Threading.CancellationToken 'System.Threading.CancellationToken') | Токен отмены |
 
-<a name='M-WebArg-Web-Controllers-MasterController-GetListMaster'></a>
-### GetListMaster() `method`
+<a name='M-WebArg-Web-Controllers-MasterController-GetListMaster-WebArg-Web-Features-Masters-Queries-GetListMasterQuery-'></a>
+### GetListMaster(query) `method`
 
 ##### Summary
 
@@ -1172,7 +1220,9 @@ WebArg.Web.Controllers
 
 ##### Parameters
 
-This method has no parameters.
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| query | [WebArg.Web.Features.Masters.Queries.GetListMasterQuery](#T-WebArg-Web-Features-Masters-Queries-GetListMasterQuery 'WebArg.Web.Features.Masters.Queries.GetListMasterQuery') | Dto параметр |
 
 <a name='M-WebArg-Web-Controllers-MasterController-SetBindWithPerson-WebArg-Web-Features-Masters-DtoModels-SetBindWithPersonDto,System-Threading-CancellationToken-'></a>
 ### SetBindWithPerson(model,cancellationToken) `method`
@@ -1347,8 +1397,8 @@ WebArg.Web.Controllers
 | query | [WebArg.Web.Features.Persons.Queries.GetInfoPersonQuery](#T-WebArg-Web-Features-Persons-Queries-GetInfoPersonQuery 'WebArg.Web.Features.Persons.Queries.GetInfoPersonQuery') | Dto параметр |
 | cancellationToken | [System.Threading.CancellationToken](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Threading.CancellationToken 'System.Threading.CancellationToken') | Токен отмены |
 
-<a name='M-WebArg-Web-Controllers-PersonController-GetListPerson'></a>
-### GetListPerson() `method`
+<a name='M-WebArg-Web-Controllers-PersonController-GetListPerson-WebArg-Web-Features-Persons-Queries-GetListPersonQuery-'></a>
+### GetListPerson(query) `method`
 
 ##### Summary
 
@@ -1360,7 +1410,9 @@ WebArg.Web.Controllers
 
 ##### Parameters
 
-This method has no parameters.
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| query | [WebArg.Web.Features.Persons.Queries.GetListPersonQuery](#T-WebArg-Web-Features-Persons-Queries-GetListPersonQuery 'WebArg.Web.Features.Persons.Queries.GetListPersonQuery') | Dto параметр |
 
 <a name='M-WebArg-Web-Controllers-PersonController-UpdatePerson-WebArg-Web-Features-Persons-DtoModels-EditPersonDto,System-Threading-CancellationToken-'></a>
 ### UpdatePerson(model,cancellationToken) `method`
@@ -1670,8 +1722,8 @@ WebArg.Web.Controllers
 | query | [WebArg.Web.Features.Studios.Queries.GetInfoStudioQuery](#T-WebArg-Web-Features-Studios-Queries-GetInfoStudioQuery 'WebArg.Web.Features.Studios.Queries.GetInfoStudioQuery') | Dto параметр |
 | cancellationToken | [System.Threading.CancellationToken](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Threading.CancellationToken 'System.Threading.CancellationToken') | Токен отмены |
 
-<a name='M-WebArg-Web-Controllers-StudioController-GetListStudios'></a>
-### GetListStudios() `method`
+<a name='M-WebArg-Web-Controllers-StudioController-GetListStudios-WebArg-Web-Features-Studios-Queries-GetListStudiosQuery-'></a>
+### GetListStudios(query) `method`
 
 ##### Summary
 
@@ -1683,7 +1735,9 @@ WebArg.Web.Controllers
 
 ##### Parameters
 
-This method has no parameters.
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| query | [WebArg.Web.Features.Studios.Queries.GetListStudiosQuery](#T-WebArg-Web-Features-Studios-Queries-GetListStudiosQuery 'WebArg.Web.Features.Studios.Queries.GetListStudiosQuery') | Dto параметр |
 
 <a name='M-WebArg-Web-Controllers-StudioController-SetBindWithMaster-WebArg-Web-Features-Studios-DtoModels-SetBindWithMasterDto,System-Threading-CancellationToken-'></a>
 ### SetBindWithMaster(model,cancellationToken) `method`

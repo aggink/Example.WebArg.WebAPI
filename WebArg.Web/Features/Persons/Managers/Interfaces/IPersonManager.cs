@@ -1,4 +1,7 @@
-﻿using WebArg.Web.Features.Persons.DtoModels;
+﻿using WebArg.Storage.Models;
+using WebArg.Web.Features.Persons.DtoModels;
+using WebArg.Web.Features.Persons.Queries;
+using X.PagedList;
 
 namespace WebArg.Web.Features.Persons.Managers.Interfaces;
 
@@ -42,9 +45,9 @@ public interface IPersonManager
     /// <summary>
     /// Получить список клиентов
     /// </summary>
-    /// <param name="isnStudio">Идентификатор студии</param>
+    /// <param name="query">Параметры запроса</param>
     /// <returns></returns>
-    Task<PersonDto[]> GetListPersonAsync(Guid? isnStudio);
+    Task<IPagedList<PersonDto>> GetListPersonAsync(GetListPersonQuery query);
 
     /// <summary>
     /// Получить полные данные о клиенте

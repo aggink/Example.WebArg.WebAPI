@@ -1,4 +1,7 @@
-﻿using WebArg.Web.Features.Masters.DtoModels;
+﻿using WebArg.Storage.Models;
+using WebArg.Web.Features.Masters.DtoModels;
+using WebArg.Web.Features.Masters.Queries;
+using X.PagedList;
 
 namespace WebArg.Web.Features.Masters.Managers.Interfaces;
 
@@ -58,8 +61,9 @@ public interface IMasterManager
     /// <summary>
     /// Получить список мастеров
     /// </summary>
+    /// <param name="query">Параметры запроса</param>
     /// <returns>Список мастеров</returns>
-    Task<MasterDto[]> GetListMasterAsync();
+    Task<IPagedList<MasterDto>> GetListMasterAsync(GetListMasterQuery query);
 
     /// <summary>
     /// Получить полную информацию о мастере

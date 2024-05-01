@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebArg.Logic.DtoModels;
 using WebArg.Logic.Exceptions;
 using WebArg.Logic.Interfaces.Services;
 using WebArg.Storage.Database;
@@ -11,13 +12,13 @@ namespace WebArg.Logic.Services;
 /// </summary>
 public sealed class PersonService : IPersonService
 {
-    public IQueryable<Person> GetPersonQueryable(DataContext dataContext, Guid? isnStudio)
+    public IQueryable<Person> GetPersonQueryable(DataContext dataContext, PersonFilter filter)
     {
         IQueryable<Person> customerQuery = dataContext.Persons
             .AsNoTracking();
 
-        if (isnStudio.HasValue)
-            customerQuery = customerQuery.Where(x => x.IsnStudio == isnStudio);
+        if (filter.IsnStudio.HasValue)
+            customerQuery = customerQuery.Where(x => x.IsnStudio == filter.IsnStudio.Value);
 
         return customerQuery;
     }

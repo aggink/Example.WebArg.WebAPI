@@ -3,6 +3,7 @@ using WebArg.Web.DataAnnotations;
 using WebArg.Web.Features.Studios.DtoModels;
 using WebArg.Web.Features.Studios.Managers.Interfaces;
 using WebArg.Web.Features.Studios.Queries;
+using X.PagedList;
 
 namespace WebArg.Web.Controllers;
 
@@ -24,11 +25,12 @@ public class StudioController : Controller
     /// <summary>
     /// Получить список студий
     /// </summary>
+    /// <param name="query">Dto параметр</param>
     /// <returns>Список студий</returns>
     [HttpGet(nameof(GetListStudios), Name = nameof(GetListStudios))]
-    public async Task<ActionResult<StudioDto[]>> GetListStudios()
+    public async Task<ActionResult<IPagedList<StudioDto>>> GetListStudios(GetListStudiosQuery query)
     {
-        var list = await _studioManager.GetListStudioAsync();
+        var list = await _studioManager.GetListStudioAsync(query);
         return Ok(list);
     }
 

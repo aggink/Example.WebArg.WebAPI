@@ -5,6 +5,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WebArg.Logic\WebArg.Logic.csproj" />
+    <ProjectReference Include="..\WebArg.Web.Common\WebArg.Web.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

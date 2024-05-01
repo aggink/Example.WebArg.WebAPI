@@ -1,4 +1,7 @@
-﻿using WebArg.Web.Features.Studios.DtoModels;
+﻿using WebArg.Storage.Models;
+using WebArg.Web.Features.Studios.DtoModels;
+using WebArg.Web.Features.Studios.Queries;
+using X.PagedList;
 
 namespace WebArg.Web.Features.Studios.Managers.Interfaces;
 
@@ -66,6 +69,7 @@ public interface IStudioManager
     /// <summary>
     /// Получить список студий
     /// </summary>
+    /// <param name="query">Параметры запроса</param>
     /// <returns>Список студий</returns>
-    Task<StudioDto[]> GetListStudioAsync();
+    Task<IPagedList<StudioDto>> GetListStudioAsync(GetListStudiosQuery query);
 }
