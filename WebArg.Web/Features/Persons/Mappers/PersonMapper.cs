@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using WebArg.Logic.DtoModels;
 using WebArg.Storage.Models;
-using WebArg.Web.Features.Masters.Queries;
 using WebArg.Web.Features.Persons.DtoModels;
+using WebArg.Web.Features.Persons.Queries;
 
 namespace WebArg.Web.Features.Persons.Mappers;
 
@@ -19,7 +19,7 @@ public sealed class PersonMapper : Profile
         CreateMap<EditPersonDto, Person>();
         CreateMap<Person, EditPersonDto>();
 
-        CreateMap<PersonFilter, GetListMasterQuery>();
-        CreateMap<GetListMasterQuery, PersonFilter>();
+        CreateMap<PersonFilter, GetListPersonQuery>();
+        CreateMap<GetListPersonQuery, PersonFilter>();
     }
 }
