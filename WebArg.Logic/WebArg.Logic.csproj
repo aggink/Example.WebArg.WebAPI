@@ -2,9 +2,8 @@
 
   <Import Project="..\build.settings.props" />
   <Import Project="..\ReadmeGeneration.props" />
-
   <ItemGroup>
-    <ProjectReference Include="..\WebArg.Storage\WebArg.Storage.csproj" />
+    <ProjectReference Include="..\WebArg.Storage.MS_SQL\WebArg.Storage.MS_SQL.csproj" />
   </ItemGroup>
 
 </Project>

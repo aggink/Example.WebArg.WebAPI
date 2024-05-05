@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using WebArg.Logic.Extensions;
 using WebArg.Storage.Database;
+using WebArg.Storage.MS_SQL;
 using WebArg.Web.Features.Masters.Managers;
 using WebArg.Web.Features.Masters.Managers.Interfaces;
 using WebArg.Web.Features.Masters.Mappers;
@@ -80,6 +81,7 @@ public static class ServiceCollectionExtensions
         options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), o =>
         {
             o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+            o.MigrationsAssembly(typeof(SqlServerContextFactory).Namespace);
         }));
     }
 
