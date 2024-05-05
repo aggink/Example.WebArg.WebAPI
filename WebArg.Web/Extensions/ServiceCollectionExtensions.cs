@@ -6,6 +6,7 @@ using System.Reflection;
 using WebArg.Logic.Extensions;
 using WebArg.Storage.Database;
 using WebArg.Storage.MS_SQL;
+using WebArg.Storage.MS_SQL.Services;
 using WebArg.Web.Features.Masters.Managers;
 using WebArg.Web.Features.Masters.Managers.Interfaces;
 using WebArg.Web.Features.Masters.Mappers;
@@ -29,6 +30,8 @@ public static class ServiceCollectionExtensions
     /// <param name="services">Коллекция дескрипторов служб</param>
     public static void AddFeaturesServices(this IServiceCollection services)
     {
+        services.AddSingleton<MigrationService>();
+
         services.AddTransient<IStudioManager, StudioManager>();
         services.AddTransient<IPersonManager, PersonManager>();
         services.AddTransient<IMasterManager, MasterManager>();

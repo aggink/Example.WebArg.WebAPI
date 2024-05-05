@@ -1,4 +1,5 @@
 ﻿using Serilog;
+using WebArg.Storage.MS_SQL.Services;
 using WebArg.Web.Extensions;
 using WebArg.Web.Middlewares;
 
@@ -19,6 +20,10 @@ builder.Services.AddFeaturesServices();
 builder.Services.AddFluentValidationSetup(typeof(Program));
 
 var app = builder.Build();
+
+using var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+var migrationService = scope.ServiceProvider.GetRequiredService<MigrationService>();
+migrationService.ApplyMigrations();
 
 app.UseHttpsRedirection();
 
